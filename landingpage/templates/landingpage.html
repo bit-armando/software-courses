@@ -1,0 +1,90 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <!-- Hero / Sección Principal -->
+    <section class="bg-blue-600 text-white">
+        <div class="container mx-auto px-4 py-12 flex flex-col md:flex-row items-center">
+            <!-- Texto -->
+            <div class="md:w-1/2 mb-8 md:mb-0">
+                <h1 class="text-4xl md:text-5xl font-bold mb-4">Logra tus metas de aprendizaje</h1>
+                <p class="text-lg md:text-xl mb-6">
+                    Descubre las mejores metodologías, programas y herramientas para crecer profesionalmente.
+                </p>
+                <a href="#categorias" class="inline-block bg-white text-blue-600 px-6 py-3 rounded font-semibold hover:bg-gray-100 transition">
+                    Explorar Categorías
+                </a>
+            </div>
+            <!-- Imagen de ejemplo (puedes reemplazarla) -->
+            <div class="md:w-1/2 flex justify-center">
+                <img src="https://images.unsplash.com/photo-1581092331678-5ba05d01c3fa?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Estudiantes" class="w-full h-auto rounded shadow-lg">
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección de Instituciones / Universidades (opcional) -->
+    <section class="py-8 bg-white">
+        <div class="container mx-auto px-4">
+            <h2 class="text-2xl md:text-3xl font-bold text-center mb-8">Aprende de las mejores instituciones</h2>
+            <div class="flex flex-wrap justify-center items-center space-x-4 space-y-4 md:space-y-0">
+                <!-- Logos de ejemplo (reemplazar con los tuyos) -->
+                <img src="https://upload.wikimedia.org/wikipedia/commons/a/a3/Logo-Round.png" alt="Logo1" class="h-10">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/4/4e/MIT_Seal.svg" alt="Logo2" class="h-10">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/b/b6/Image_created_with_a_mobile_phone.png" alt="Logo3" class="h-10">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/3/3f/Logo_BBC_World_News_%282019%29.svg" alt="Logo4" class="h-10">
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección de Categorías -->
+    <section id="categorias" class="py-12 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-8">Categorías</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Tarjeta 1 -->
+                <div class="bg-white p-6 rounded shadow hover:shadow-lg transition">
+                    <h3 class="text-xl font-semibold mb-2">Documentación</h3>
+                    <p class="text-gray-600 mb-4">
+                        Explora recursos avanzados y guías para profundizar tus conocimientos.
+                    </p>
+                    <a href="#" class="text-blue-600 font-semibold hover:underline">Ver más →</a>
+                </div>
+                <!-- Tarjeta 2 -->
+                <div class="bg-white p-6 rounded shadow hover:shadow-lg transition">
+                    <h3 class="text-xl font-semibold mb-2">Metodologías</h3>
+                    <p class="text-gray-600 mb-4">
+                        Descubre nuevas formas de organizar y planificar tus proyectos.
+                    </p>
+                    <a href="#" class="text-blue-600 font-semibold hover:underline">Ver más →</a>
+                </div>
+                <!-- Tarjeta 3 -->
+                <div class="bg-white p-6 rounded shadow hover:shadow-lg transition">
+                    <h3 class="text-xl font-semibold mb-2">Programación</h3>
+                    <p class="text-gray-600 mb-4">
+                        Mejora tus habilidades de desarrollo con tutoriales y proyectos prácticos.
+                    </p>
+                    <a href="#" class="text-blue-600 font-semibold hover:underline">Ver más →</a>
+                </div>
+                <!-- Tarjeta 4 -->
+                <div class="bg-white p-6 rounded shadow hover:shadow-lg transition">
+                    <h3 class="text-xl font-semibold mb-2">Herramientas</h3>
+                    <p class="text-gray-600 mb-4">
+                        Explora software y plataformas para optimizar tu flujo de trabajo.
+                    </p>
+                    <a href="#" class="text-blue-600 font-semibold hover:underline">Ver más →</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección de Llamado a la Acción (CTA) -->
+    <section class="py-12 bg-blue-600 text-white text-center">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold mb-4">¿Listo para comenzar?</h2>
+            <p class="mb-6">Regístrate hoy y desbloquea todos los recursos de aprendizaje.</p>
+            <a href="#" class="inline-block bg-white text-blue-600 px-6 py-3 rounded font-semibold hover:bg-gray-100 transition">
+                Crear Cuenta Gratis
+            </a>
+        </div>
+    </section>
+
+{% endblock %}
