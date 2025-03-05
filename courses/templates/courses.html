@@ -1,0 +1,87 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <!-- Sección de búsqueda y filtros -->
+    <section class="py-8 bg-white shadow-md">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-6">Explora nuestros cursos</h2>
+            <div class="flex flex-col md:flex-row md:justify-between md:items-center space-y-4 md:space-y-0">
+                
+                <!-- Campo de búsqueda -->
+                <input 
+                    type="text" 
+                    placeholder="Buscar cursos..." 
+                    class="w-full md:w-1/3 px-4 py-2 border rounded focus:outline-none focus:ring-2 focus:ring-blue-600"
+                />
+                
+                <!-- Filtro por categoría -->
+                <select 
+                    class="w-full md:w-1/3 px-4 py-2 border rounded focus:outline-none focus:ring-2 focus:ring-blue-600">
+                    <option value="">Todas las categorías</option>
+                    <option value="programacion">Programación</option>
+                    <option value="metodologias">Metodologías</option>
+                    <option value="documentacion">Documentación</option>
+                    <option value="herramientas">Herramientas</option>
+                </select>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Grid de cursos -->
+    <section class="py-12">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+                <!-- Tarjeta de Curso 1 -->
+                <div class="bg-white p-6 rounded shadow hover:shadow-lg transition">
+                    <img src="https://source.unsplash.com/400x250/?coding" alt="Curso" class="rounded mb-4">
+                    <h3 class="text-xl font-semibold mb-2">Curso de JavaScript Moderno</h3>
+                    <p class="text-gray-600 mb-4">Aprende JavaScript desde cero y domina ES6+ con proyectos prácticos.</p>
+                    <a href="#" class="text-blue-600 font-semibold hover:underline">Ver más →</a>
+                </div>
+
+                <!-- Tarjeta de Curso 2 -->
+                <div class="bg-white p-6 rounded shadow hover:shadow-lg transition">
+                    <img src="https://source.unsplash.com/400x250/?design" alt="Curso" class="rounded mb-4">
+                    <h3 class="text-xl font-semibold mb-2">Diseño UX/UI para Principiantes</h3>
+                    <p class="text-gray-600 mb-4">Descubre las bases del diseño de interfaces y experiencia de usuario.</p>
+                    <a href="#" class="text-blue-600 font-semibold hover:underline">Ver más →</a>
+                </div>
+
+                <!-- Tarjeta de Curso 3 -->
+                <div class="bg-white p-6 rounded shadow hover:shadow-lg transition">
+                    <img src="https://source.unsplash.com/400x250/?ai" alt="Curso" class="rounded mb-4">
+                    <h3 class="text-xl font-semibold mb-2">Introducción a la Inteligencia Artificial</h3>
+                    <p class="text-gray-600 mb-4">Conoce los fundamentos de la IA y sus aplicaciones en la industria.</p>
+                    <a href="#" class="text-blue-600 font-semibold hover:underline">Ver más →</a>
+                </div>
+
+                <!-- Tarjeta de Curso 4 -->
+                <div class="bg-white p-6 rounded shadow hover:shadow-lg transition">
+                    <img src="https://source.unsplash.com/400x250/?cloud" alt="Curso" class="rounded mb-4">
+                    <h3 class="text-xl font-semibold mb-2">Cloud Computing con AWS</h3>
+                    <p class="text-gray-600 mb-4">Aprende a desplegar aplicaciones en la nube con los servicios de AWS.</p>
+                    <a href="#" class="text-blue-600 font-semibold hover:underline">Ver más →</a>
+                </div>
+
+                <!-- Tarjeta de Curso 5 -->
+                <div class="bg-white p-6 rounded shadow hover:shadow-lg transition">
+                    <img src="https://source.unsplash.com/400x250/?data" alt="Curso" class="rounded mb-4">
+                    <h3 class="text-xl font-semibold mb-2">Análisis de Datos con Python</h3>
+                    <p class="text-gray-600 mb-4">Domina Pandas, NumPy y Matplotlib para el análisis de datos.</p>
+                    <a href="#" class="text-blue-600 font-semibold hover:underline">Ver más →</a>
+                </div>
+
+                <!-- Tarjeta de Curso 6 -->
+                <div class="bg-white p-6 rounded shadow hover:shadow-lg transition">
+                    <img src="https://source.unsplash.com/400x250/?cybersecurity" alt="Curso" class="rounded mb-4">
+                    <h3 class="text-xl font-semibold mb-2">Ciberseguridad para Todos</h3>
+                    <p class="text-gray-600 mb-4">Aprende cómo proteger tus datos y prevenir ataques cibernéticos.</p>
+                    <a href="#" class="text-blue-600 font-semibold hover:underline">Ver más →</a>
+                </div>
+
+            </div>
+        </div>
+    </section>
+{% endblock %}
