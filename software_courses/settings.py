@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 import os
 from pathlib import Path
 from dotenv import load_dotenv
+from storages.backends.s3boto3 import S3Boto3Storage
 
 
 load_dotenv()
@@ -29,7 +30,7 @@ SECRET_KEY = 'django-insecure-22cgzs9n!=is9+6%3p2t_q%)=$*w@44sm$#v02w2+3ghlfmodv
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost', '0.0.0.0']
 
 
 # Application definition
@@ -139,22 +140,20 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
 # Configurar almacenamiento en S3
-AWS_ACCESS_KEY_ID = os.getenv("AWS_ACCESS_KEY_ID")
-AWS_SECRET_ACCESS_KEY = os.getenv("AWS_SECRET_ACCESS_KEY")
-AWS_STORAGE_BUCKET_NAME = os.getenv("AWS_STORAGE_BUCKET_NAME")
-AWS_S3_REGION_NAME = os.getenv("AWS_REGION", "")
+AWS_ACCESS_KEY_ID = os.getenv('AWS_ACCESS_KEY_ID')
+AWS_SECRET_ACCESS_KEY = os.getenv('AWS_SECRET_ACCESS_KEY')
+AWS_STORAGE_BUCKET_NAME = os.getenv('AWS_STORAGE_BUCKET_NAME')
+AWS_S3_REGION_NAME = os.getenv('AWS_S3_REGION_NAME')
+AWS_S3_SIGNATURE_VERSION = "s3v4"  # Puede ayudar con problemas de permisos
+AWS_S3_ADDRESSING_STYLE = "path"
+AWS_S3_FILE_OVERWRITE = False
+AWS_DEFAULT_ACL = None
 
 
-AWS_S3_CUSTOM_DOMAIN = f"{AWS_STORAGE_BUCKET_NAME}.s3.{AWS_S3_REGION_NAME}.amazonaws.com"
+# Separar los archivos estáticos y de medios
+STATICFILES_LOCATION = 'static'
+MEDIAFILES_LOCATION = 'media'
 
-# Configurar django-storages como backend de almacenamiento de archivos
-DEFAULT_FILE_STORAGE = "storages.backends.s3boto3.S3Boto3Storage"
-
-# Configurar permisos para archivos públicos
-AWS_QUERYSTRING_AUTH = False
-AWS_S3_OBJECT_PARAMETERS = {
-    "CacheControl": "max-age=86400",
-}
-
-# Ruta base de almacenamiento en S3
-MEDIA_URL = f"https://{AWS_S3_CUSTOM_DOMAIN}/"
+# Importante: usar custom storages para la separación
+DEFAULT_FILE_STORAGE = 'software_courses.storage_backends.MediaStorage'
+STATICFILES_STORAGE = 'software_courses.storage_backends.StaticStorage'
