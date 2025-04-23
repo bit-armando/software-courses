@@ -1,14 +1,12 @@
 from django.shortcuts import render
 from software_courses.storage_backends import MediaStorage
+from django.contrib.auth.decorators import login_required
 
 from .models import Course ,Comment ,Response
 from authapp.models import Person
 
-from .forms import CourseForm ,CommentForm ,ResponseForm
+from .forms import CourseForm
 
-
-def course_list(request):
-    return render(request, 'courses/course_list.html')
 
 # def course_detail(request, course_id):
 #     return render(request, 'courses/course_detail.html', {'course_id': course_id})
@@ -62,6 +60,7 @@ def response_comment( request ):
     return render( request ,'courses/course.html' )
 
 
+@login_required(login_url='/auth/login/')
 def list_courses( request ):
     courses = Course.objects.all()
     return render( request ,'courses/course_list.html' ,{'courses': courses} )
