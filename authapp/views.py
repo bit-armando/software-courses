@@ -33,7 +33,7 @@ def login_user(request):
                 if user is not None:
                     login(request, user)
                     messages.success(request, "Logged in successfully.")
-                    return redirect('landingpage:home')
+                    return redirect('courses:list_courses')
                 else:
                     messages.error(request, "Invalid email or password.")
             except User.DoesNotExist:
