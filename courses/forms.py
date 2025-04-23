@@ -6,7 +6,7 @@ from software_courses.storage_backends import MediaStorage
 class CourseForm(ModelForm):
     class Meta:
         model = Course
-        fields = ['title', 'image', 'short_description', 'description', 'video']
+        fields = ['title', 'category', 'image', 'short_description', 'description', 'video']
 
     def save(self, commit=True):
         instance = super().save(commit=False)

@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from software_courses.storage_backends import MediaStorage
 from django.contrib.auth.decorators import login_required
 
@@ -12,12 +12,20 @@ from .forms import CourseForm
 #     return render(request, 'courses/course_detail.html', {'course_id': course_id})
 
 
+@login_required(login_url='/auth/login/')
 def upload_video(request):
     if request.method == 'POST':
         form = CourseForm(request.POST, request.FILES)
         if form.is_valid():
-            form.save()
-            return render(request, 'courses/upload_success.html')
+            # Guardar el curso y subir el video a S3
+            course = form.save(commit=False)
+            if 'video' in request.FILES:
+                video = request.FILES['video']
+                media_storage = MediaStorage()
+                video_name = media_storage.save(f"videos/{video.name}", video)
+                course.video = media_storage.url(video_name)
+            course.save()
+            return redirect('courses:list_courses')  # Redirigir a la lista de cursos
     else:
         form = CourseForm()
 
