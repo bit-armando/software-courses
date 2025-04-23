@@ -33,9 +33,9 @@
             <h3 class="text-xl font-semibold mb-2">{{ course.title }}</h3>
             <p class="text-gray-600 mb-4">{{ course.short_description }}</p>
             <p><strong>Categoría:</strong> {{ course.category.name }}</p>
-            {% if course.video %}
-            <a href="{{ course.video.url }}" class="text-blue-600 font-semibold hover:underline">Ver Video</a>
-            {% endif %}
+            <a href="{% url 'courses:course_detail' course.id %}" class="text-blue-600 font-semibold hover:underline">
+                Ver detalles →
+            </a>
         </div>
         {% empty %}
         <p>No se encontraron cursos que coincidan con los criterios de búsqueda.</p>

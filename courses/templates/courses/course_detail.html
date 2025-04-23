@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container mx-auto py-12">
+    <h2 class="text-3xl font-bold mb-6">{{ course.title }}</h2>
+
+    <!-- Descripción del curso -->
+    <p class="text-gray-600 mb-4">{{ course.description }}</p>
+
+    <!-- Reproductor de video -->
+    {% if course.video %}
+    <div class="mb-6">
+        <video
+            id="video-player"
+            class="video-js vjs-default-skin vjs-big-play-centered w-full rounded shadow"
+            controls
+            autoplay
+            preload="auto"
+            data-setup='{}'>
+            <source src="{{ course.video }}" type="video/mp4">
+            Tu navegador no soporta la reproducción de videos.
+        </video>
+    </div>
+    {% else %}
+    <p class="text-red-500">Este curso no tiene un video asociado.</p>
+    {% endif %}
+
+    <!-- Información adicional -->
+    <p><strong>Categoría:</strong> {{ course.category.name }}</p>
+    <p><strong>Publicado el:</strong> {{ course.created_at|date:"d M Y" }}</p>
+</div>
+{% endblock %}
