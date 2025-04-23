@@ -21,7 +21,9 @@
         <a href="#" class="text-gray-600 hover:text-blue-600">Categorías</a>
         <a href="#" class="text-gray-600 hover:text-blue-600">Documentación</a>
         <a href="#" class="text-gray-600 hover:text-blue-600">Metodologías</a>
-        <a href="#" class="text-gray-600 hover:text-blue-600">Login / Registro</a>
+        <a href="{% if user.is_authenticated %}{% url 'authapp:logout' %}{% else %}{% url 'authapp:login' %}{% endif %}" class="text-gray-600 hover:text-blue-600">
+          {% if user.is_authenticated %}Logout{% else %}Login / Registro{% endif %}
+        </a>
       </nav>
 
       <!-- Botón para mobile -->
