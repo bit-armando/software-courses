@@ -1,8 +1,10 @@
 from django.shortcuts import render, redirect
 from software_courses.storage_backends import MediaStorage
 from django.contrib.auth.decorators import login_required
+from django.core.paginator import Paginator
+from django.db.models import Q
 
-from .models import Course ,Comment ,Response
+from .models import Course ,Comment ,Response, CategoryCourse
 from authapp.models import Person
 
 from .forms import CourseForm
@@ -69,9 +71,41 @@ def response_comment( request ):
 
 
 @login_required(login_url='/auth/login/')
-def list_courses( request ):
+def list_courses(request):
+    query = request.GET.get('q')  # Obtener el término de búsqueda
+    category = request.GET.get('category')  # Obtener la categoría seleccionada
+
+    # Obtener todos los cursos
     courses = Course.objects.all()
-    return render( request ,'courses/course_list.html' ,{'courses': courses} )
+
+    # Filtrar por nombre o descripción
+    if query:
+        courses = courses.filter(
+            Q(title__icontains=query) | Q(description__icontains=query)
+        )
+
+    # Filtrar por categoría
+    if category:
+        try:
+            category = int(category)
+            courses = courses.filter(category__id=category)
+        except ValueError:
+            pass
+
+    # Paginación: Mostrar 15 cursos por página
+    paginator = Paginator(courses, 15)
+    page_number = request.GET.get('page')  # Obtener el número de página actual
+    page_obj = paginator.get_page(page_number)
+
+    # Obtener todas las categorías para el selector
+    categories = CategoryCourse.objects.all()
+
+    return render(request, 'courses/course_list.html', {
+        'page_obj': page_obj,
+        'query': query,
+        'category': category,
+        'categories': categories
+    })
 
 
 def course_detail( request ,course_id ):
