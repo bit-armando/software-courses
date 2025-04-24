@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from software_courses.storage_backends import MediaStorage
 from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator
@@ -109,5 +109,30 @@ def list_courses(request):
 
 
 def course_detail( request ,course_id ):
-    course = Course.objects.get( id=course_id )
-    return render( request ,'courses/course_detail.html' ,{'course': course} )
+    course = get_object_or_404(Course, id=course_id)
+    person = get_object_or_404(Person, user=request.user)
+    
+    if request.method == 'POST' and 'comment' in request.POST:
+        comment_text = request.POST.get('comment')
+        Comment.objects.create(
+            course=course,
+            person=person,
+            comment=comment_text
+        )
+    
+    if request.method == 'POST' and 'response' in request.POST:
+        comment_id = request.POST.get('comment_id')
+        response_text = request.POST.get('response')
+        comment = get_object_or_404(Comment, id=comment_id)
+        Response.objects.create(
+            comment=comment,
+            person=person,
+            response=response_text
+        )
+    
+    comments = course.comments.prefetch_related('responses')
+    
+    return render( request ,'courses/course_detail.html' ,{
+        'course': course,
+        'comments': comments
+        } )

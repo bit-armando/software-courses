@@ -10,13 +10,7 @@
     <!-- Reproductor de video -->
     {% if course.video %}
     <div class="mb-6">
-        <video
-            id="video-player"
-            class="video-js vjs-default-skin vjs-big-play-centered w-full rounded shadow"
-            controls
-            autoplay
-            preload="auto"
-            data-setup='{}'>
+        <video controls class="w-full rounded shadow">
             <source src="{{ course.video }}" type="video/mp4">
             Tu navegador no soporta la reproducción de videos.
         </video>
@@ -28,5 +22,44 @@
     <!-- Información adicional -->
     <p><strong>Categoría:</strong> {{ course.category.name }}</p>
     <p><strong>Publicado el:</strong> {{ course.created_at|date:"d M Y" }}</p>
+
+    <p class="text-gray-600 mb-4">{{ course.description}}</p>
+
+    <!-- Formulario para comentarios -->
+    <form method="post" class="mb-6">
+        {% csrf_token %}
+        <textarea name="comment" placeholder="Escribe un comentario..." class="border p-2 rounded w-full"></textarea>
+        <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded mt-2">Comentar</button>
+    </form>
+
+    <!-- Lista de comentarios -->
+    <h3 class="text-2xl font-bold mb-4">Comentarios</h3>
+    {% for comment in comments %}
+    <div class="mb-4 border-b pb-4">
+        <p><strong>{{ comment.person.user.username }}</strong> dijo:</p>
+        <p>{{ comment.comment }}</p>
+        <p class="text-sm text-gray-500">Publicado el {{ comment.created_at|date:"d M Y H:i" }}</p>
+
+        <!-- Respuestas -->
+        <div class="ml-4 mt-2">
+            {% for response in comment.responses.all %}
+            <div class="mb-2">
+                <p><strong>{{ response.person.user.username }}</strong> respondió:</p>
+                <p>{{ response.response }}</p>
+                <p class="text-sm text-gray-500">Publicado el {{ response.created_at|date:"d M Y H:i" }}</p>
+            </div>
+            {% endfor %}
+        </div>
+
+        <!-- Formulario para responder -->
+        <form method="post" class="mt-2">
+            {% csrf_token %}
+            <input type="hidden" name="comment_id" value="{{ comment.id }}">
+            <textarea name="response" placeholder="Escribe una respuesta..." class="border p-2 rounded w-full"></textarea>
+            <button type="submit" class="bg-gray-500 text-white px-4 py-2 rounded mt-2">Responder</button>
+        </form>
+    </div>
+    {% endfor %}
+</div>
 </div>
 {% endblock %}

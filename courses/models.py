@@ -27,7 +27,7 @@ class Course(models.Model):
 
 
 class Comment(models.Model):
-    course = models.ForeignKey(Course, on_delete=models.CASCADE)
+    course = models.ForeignKey(Course, on_delete=models.CASCADE, related_name='comments')
     person = models.ForeignKey(Person, on_delete=models.CASCADE)
     comment = models.TextField(verbose_name='Comment', blank=False, null=False)
     created_at = models.DateTimeField(auto_now_add=True)
@@ -37,7 +37,7 @@ class Comment(models.Model):
 
 
 class Response(models.Model):
-    comment = models.ForeignKey(Comment, on_delete=models.CASCADE)
+    comment = models.ForeignKey(Comment, on_delete=models.CASCADE, related_name='responses')
     person = models.ForeignKey(Person, on_delete=models.CASCADE)
     response = models.TextField(verbose_name='Response', blank=False, null=False)
     created_at = models.DateTimeField(auto_now_add=True)
