@@ -8,5 +8,5 @@ class StaticStorage(S3Boto3Storage):
 
 class MediaStorage(S3Boto3Storage):
     location = settings.MEDIAFILES_LOCATION
-    default_acl = "private"  # Los archivos multimedia suelen ser privados
+    # default_acl = "public-read"  # Los archivos multimedia suelen ser privados
     file_overwrite = False

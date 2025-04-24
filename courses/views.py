@@ -8,11 +8,7 @@ from .models import Course ,Comment ,Response, CategoryCourse
 from authapp.models import Person
 
 from .forms import CourseForm
-
-
-# def course_detail(request, course_id):
-#     return render(request, 'courses/course_detail.html', {'course_id': course_id})
-
+from utils.courses import get_url_without_query
 
 @login_required(login_url='/auth/login/')
 def upload_video(request):
@@ -112,6 +108,11 @@ def course_detail( request ,course_id ):
     course = get_object_or_404(Course, id=course_id)
     person = get_object_or_404(Person, user=request.user)
     
+    if course.video:
+        video_url = get_url_without_query(str(course.video))
+    else:
+        video_url = None
+    
     if request.method == 'POST' and 'comment' in request.POST:
         comment_text = request.POST.get('comment')
         Comment.objects.create(
@@ -134,5 +135,6 @@ def course_detail( request ,course_id ):
     
     return render( request ,'courses/course_detail.html' ,{
         'course': course,
-        'comments': comments
+        'comments': comments,
+        'video_url': video_url,
         } )
