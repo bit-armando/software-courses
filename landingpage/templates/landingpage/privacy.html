@@ -1,0 +1,141 @@
+{% extends "base.html" %} {% block content %}
+<style>
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  .animate-fadeInUp {
+    animation: fadeInUp 0.8s ease-out;
+  }
+</style>
+
+<div
+  class="max-w-4xl mx-auto p-8 bg-gray-50 shadow-lg rounded-2xl mt-10 animate-fadeInUp text-justify"
+>
+  <h1 class="text-4xl font-bold text-purple-600 mb-6 text-center">
+    Política de Privacidad
+  </h1>
+  <p class="text-center text-sm text-gray-500 mb-10">
+    Fecha de última actualización: 29 de abril de 2025
+  </p>
+
+  <p class="text-gray-700 mb-6">
+    En <span class="font-semibold text-purple-600">CodeMentorEngineering</span>,
+    valoramos tu privacidad y nos comprometemos a proteger tus datos personales.
+    Esta Política de Privacidad explica cómo recopilamos, utilizamos,
+    almacenamos y protegemos tu información. Al utilizar nuestro sitio web,
+    aceptas las prácticas descritas a continuación.
+  </p>
+
+  <h2 class="text-2xl font-semibold text-purple-600 mt-10 mb-4">
+    1. Información que Recopilamos
+  </h2>
+  <p class="text-gray-700 mb-6">
+    Podemos recopilar la siguiente información personal:
+  </p>
+  <ul class="list-disc list-inside text-gray-700 mb-6">
+    <li>Nombre completo.</li>
+    <li>Correo electrónico.</li>
+    <li>Información académica relevante.</li>
+    <li>Datos de acceso y navegación en la plataforma.</li>
+  </ul>
+
+  <h2 class="text-2xl font-semibold text-purple-600 mt-10 mb-4">
+    2. Uso de la Información
+  </h2>
+  <p class="text-gray-700 mb-6">Utilizamos la información recopilada para:</p>
+  <ul class="list-disc list-inside text-gray-700 mb-6">
+    <li>Gestionar tu cuenta y permitir el acceso a cursos.</li>
+    <li>Enviar notificaciones importantes sobre el servicio.</li>
+    <li>Mejorar la calidad de nuestros contenidos y servicios.</li>
+    <li>Responder a consultas o solicitudes de soporte.</li>
+  </ul>
+
+  <h2 class="text-2xl font-semibold text-purple-600 mt-10 mb-4">
+    3. Conservación de los Datos
+  </h2>
+  <p class="text-gray-700 mb-6">
+    Conservaremos tus datos personales durante el tiempo necesario para cumplir
+    con los fines para los cuales se recopilaron, o mientras tu cuenta esté
+    activa. Posteriormente, los datos podrán ser eliminados o anonimizados.
+  </p>
+
+  <h2 class="text-2xl font-semibold text-purple-600 mt-10 mb-4">
+    4. Compartición de la Información
+  </h2>
+  <p class="text-gray-700 mb-6">
+    No vendemos, alquilamos ni compartimos tu información personal con terceros,
+    salvo en los siguientes casos:
+  </p>
+  <ul class="list-disc list-inside text-gray-700 mb-6">
+    <li>
+      Cuando sea necesario para prestar servicios (por ejemplo, proveedores
+      tecnológicos).
+    </li>
+    <li>Cuando sea requerido por ley o por una autoridad competente.</li>
+    <li>Para proteger nuestros derechos o propiedad.</li>
+  </ul>
+
+  <h2 class="text-2xl font-semibold text-purple-600 mt-10 mb-4">
+    5. Seguridad de la Información
+  </h2>
+  <p class="text-gray-700 mb-6">
+    Implementamos medidas de seguridad físicas, electrónicas y administrativas
+    para proteger tus datos. Sin embargo, ninguna transmisión de datos por
+    Internet es 100% segura, por lo que no podemos garantizar una protección
+    absoluta.
+  </p>
+
+  <h2 class="text-2xl font-semibold text-purple-600 mt-10 mb-4">
+    6. Tus Derechos
+  </h2>
+  <p class="text-gray-700 mb-6">
+    Tienes derecho a acceder, corregir, actualizar o eliminar tus datos
+    personales. Puedes ejercer estos derechos contactándonos a través de los
+    medios indicados al final de esta política.
+  </p>
+
+  <h2 class="text-2xl font-semibold text-purple-600 mt-10 mb-4">
+    7. Cookies y Tecnologías Similares
+  </h2>
+  <p class="text-gray-700 mb-6">
+    Utilizamos cookies para mejorar tu experiencia en nuestro sitio, analizar el
+    tráfico y personalizar el contenido. Puedes gestionar tus preferencias de
+    cookies desde la configuración de tu navegador.
+  </p>
+
+  <h2 class="text-2xl font-semibold text-purple-600 mt-10 mb-4">
+    8. Modificaciones a la Política
+  </h2>
+  <p class="text-gray-700 mb-6">
+    Nos reservamos el derecho de actualizar esta Política de Privacidad en
+    cualquier momento. Te notificaremos cualquier cambio significativo a través
+    de nuestro sitio o por otros medios de contacto.
+  </p>
+
+  <h2 class="text-2xl font-semibold text-purple-600 mt-10 mb-4">9. Contacto</h2>
+  <p class="text-gray-700 mb-6">
+    Si tienes preguntas sobre esta Política de Privacidad o deseas ejercer tus
+    derechos, puedes comunicarte con nosotros en:
+  </p>
+  <ul class="list-disc list-inside text-gray-700 mb-6">
+    <li>
+      Correo electrónico:
+      <span class="font-semibold text-purple-600">correo@example.com</span>
+    </li>
+    <li>
+      Dirección postal:
+      <span class="font-semibold text-purple-600"
+        >Av. Jose Jesús Macias Delgado 18100, Ciudad Universitaria, 32000,
+        Juárez, Chih.</span
+      >
+    </li>
+  </ul>
+</div>
+{% endblock %}
