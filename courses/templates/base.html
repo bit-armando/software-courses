@@ -1,79 +1,127 @@
 <!DOCTYPE html>
 <html lang="es">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Tu Sitio de Aprendizaje</title>
-  <!-- Tailwind CSS via CDN -->
-  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-  <!-- Agregar en la sección <head> de base.html o course_detail.html -->
-  <link href="https://vjs.zencdn.net/8.0.4/video-js.css" rel="stylesheet">
-  <script src="https://vjs.zencdn.net/8.0.4/video.min.js"></script>
-</head>
-<body class="bg-gray-50 text-gray-800">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tu Sitio de Aprendizaje</title>
+    <!-- Tailwind CSS via CDN -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
+      rel="stylesheet"
+    />
+    <!-- Agregar en la sección <head> de base.html o course_detail.html -->
+    <link href="https://vjs.zencdn.net/8.0.4/video-js.css" rel="stylesheet" />
+    <script src="https://vjs.zencdn.net/8.0.4/video.min.js"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined"
+      rel="stylesheet"
+    />
+  </head>
+  <body class="bg-gray-50 text-gray-800">
+    <!-- Header / Navbar -->
+    <header class="bg-white shadow">
+      <div
+        class="container mx-auto px-4 py-4 flex justify-between items-center"
+      >
+        <!-- Logo / Nombre -->
+        <a href="#" class="text-2xl font-bold text-blue-600">TuSitio</a>
 
-  <!-- Header / Navbar -->
-  <header class="bg-white shadow">
-    <div class="container mx-auto px-4 py-4 flex justify-between items-center">
-      <!-- Logo / Nombre -->
-      <a href="#" class="text-2xl font-bold text-blue-600">TuSitio</a>
-      
-      <!-- Menu -->
-      <nav class="hidden md:flex space-x-4">
-        <a href="#" class="text-gray-600 hover:text-purple-600">Inicio</a>
-        <a href="#" class="text-gray-600 hover:text-purple-600">Categorías</a>
-        <a href="#" class="text-gray-600 hover:text-purple-600">Documentación</a>
-        <a href="#" class="text-gray-600 hover:text-purple-600">Metodologías</a>
-        <a href="{% if user.is_authenticated %}{% url 'authapp:logout' %}{% else %}{% url 'authapp:login' %}{% endif %}" class="text-gray-600 hover:text-purple-600">
-          {% if user.is_authenticated %}Logout{% else %}Login / Registro{% endif %}
-        </a>
-      </nav>
+        <!-- Menu -->
+        <nav class="hidden md:flex space-x-8">
+          <a href="#" class="flex flex-col items-center text-gray-600 hover:text-purple-600" >
+            <span class="material-symbols-outlined text-3xl">home</span>
+            <span class="text-sm">Inicio</span>
+          </a>
 
-      <!-- Botón para mobile -->
-      <button class="md:hidden px-2 py-1 text-gray-600 focus:outline-none focus:ring-2 focus:ring-blue-600">
-        <!-- Ícono de menú (hamburguesa) -->
-        <svg class="w-6 h-6" fill="none" stroke="currentColor" 
-             viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-          <path stroke-linecap="round" stroke-linejoin="round" 
-                stroke-width="2" d="M4 6h16M4 12h16M4 18h16">
-          </path>
-        </svg>
-      </button>
-    </div>
-  </header>
+          <a href="#" class="flex flex-col items-center text-gray-600 hover:text-purple-600" >
+            <span class="material-symbols-outlined text-3xl">sort</span>
+            <span class="text-sm">Categorías</span>
+          </a>
 
-  {% block content %}
-  {% endblock %}
+          <a href="#" class="flex flex-col items-center text-gray-600 hover:text-purple-600" >
+            <span class="material-symbols-outlined text-3xl">edit_note</span>
+            <span class="text-sm">Documentación</span>
+          </a>
 
-  <!-- Footer -->
-  <footer class="bg-white border-t py-6 mt-12">
-    <div class="container mx-auto px-4 flex flex-col md:flex-row justify-between items-center">
-      <!-- Información Legal -->
-      <div class="mb-4 md:mb-0">
-        <h3 class="font-semibold">Enlaces Legales</h3>
-        <ul class="text-gray-600">
-          <li><a href="#" class="hover:text-blue-600">Términos y Condiciones</a></li>
-          <li><a href="#" class="hover:text-blue-600">Política de Privacidad</a></li>
-        </ul>
+          <a href="#" class="flex flex-col items-center text-gray-600 hover:text-purple-600" >
+            <span class="material-symbols-outlined text-3xl">flowchart</span>
+            <span class="text-sm">Metodologías</span>
+          </a>
+
+          {% if user.is_authenticated %}
+          <a href="{% url 'authapp:logout' %}" class="flex flex-col items-center text-gray-600 hover:text-purple-600" >
+            <span class="material-symbols-outlined text-3xl"
+              >account_circle</span
+            >
+            <span class="text-sm">Logout</span>
+          </a>
+          {% else %}
+          <a href="{% url 'authapp:login' %}" class="flex flex-col items-center text-gray-600 hover:text-purple-600" >
+            <span class="material-symbols-outlined text-3xl">account_circle</span>
+            <span class="text-sm">Login / Registro</span>
+          </a>
+          {% endif %}
+        </nav>
+
+        <!-- Botón para mobile -->
+        <button
+          class="md:hidden px-2 py-1 text-gray-600 focus:outline-none focus:ring-2 focus:ring-blue-600"
+        >
+          <!-- Ícono de menú (hamburguesa) -->
+          <svg
+            class="w-6 h-6"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M4 6h16M4 12h16M4 18h16"
+            ></path>
+          </svg>
+        </button>
       </div>
+    </header>
 
-      <!-- Redes Sociales -->
-      <div class="mb-4 md:mb-0">
-        <h3 class="font-semibold">Redes Sociales</h3>
-        <ul class="flex space-x-4 text-gray-600">
-          <li><a href="#" class="hover:text-blue-600">Twitter</a></li>
-          <li><a href="#" class="hover:text-blue-600">Facebook</a></li>
-          <li><a href="#" class="hover:text-blue-600">LinkedIn</a></li>
-        </ul>
+    {% block content %} {% endblock %}
+
+    <!-- Footer -->
+    <footer class="bg-white border-t py-6 mt-12">
+      <div
+        class="container mx-auto px-4 flex flex-col md:flex-row justify-between items-center"
+      >
+        <!-- Información Legal -->
+        <div class="mb-4 md:mb-0">
+          <h3 class="font-semibold">Enlaces Legales</h3>
+          <ul class="text-gray-600">
+            <li>
+              <a href="#" class="hover:text-blue-600">Términos y Condiciones</a>
+            </li>
+            <li>
+              <a href="#" class="hover:text-blue-600">Política de Privacidad</a>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Redes Sociales -->
+        <div class="mb-4 md:mb-0">
+          <h3 class="font-semibold">Redes Sociales</h3>
+          <ul class="flex space-x-4 text-gray-600">
+            <li><a href="#" class="hover:text-blue-600">Twitter</a></li>
+            <li><a href="#" class="hover:text-blue-600">Facebook</a></li>
+            <li><a href="#" class="hover:text-blue-600">LinkedIn</a></li>
+          </ul>
+        </div>
+
+        <!-- Información Adicional -->
+        <div>
+          <h3 class="font-semibold">Información Adicional</h3>
+          <p class="text-gray-600">Contacto: info@tusitioaprendizaje.com</p>
+        </div>
       </div>
-
-      <!-- Información Adicional -->
-      <div>
-        <h3 class="font-semibold">Información Adicional</h3>
-        <p class="text-gray-600">Contacto: info@tusitioaprendizaje.com</p>
-      </div>
-    </div>
-  </footer>
-
-</body>
+    </footer>
+  </body>
 </html>
