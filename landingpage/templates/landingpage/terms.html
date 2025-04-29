@@ -1,0 +1,191 @@
+{% extends "base.html" %} {% block content %}
+<style>
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  .animate-fadeInUp {
+    animation: fadeInUp 0.8s ease-out;
+  }
+</style>
+
+<div
+  class="max-w-4xl mx-auto p-8 bg-gray-50 shadow-lg rounded-2xl mt-10 animate-fadeInUp text-justify"
+>
+  <h1 class="text-4xl font-bold text-purple-600 mb-6 text-center">
+    Términos y Condiciones de Uso
+  </h1>
+  <p class="text-center text-sm text-gray-500 mb-10">
+    Fecha de última actualización: 29 de abril de 2025
+  </p>
+
+  <p class="text-gray-700 mb-6">
+    Bienvenido a
+    <span class="font-semibold text-purple-600">CodeMentorEngineering</span>. Al
+    acceder o utilizar nuestro sitio web, aceptas cumplir y estar sujeto a los
+    siguientes Términos y Condiciones de uso. Si no estás de acuerdo con alguna
+    parte de los términos, te pedimos que no utilices el sitio.
+  </p>
+
+  <h2 class="text-2xl font-semibold text-purple-600 mt-10 mb-4">
+    1. Descripción del Servicio
+  </h2>
+  <p class="text-gray-700 mb-6">
+    <span class="font-semibold text-purple-600">CodeMentorEngineering</span>
+    ofrece cursos en línea gratuitos y de pago orientados al aprendizaje de
+    Ingeniería de Software, incluyendo temas como programación, bases de datos,
+    arquitectura de sistemas, metodologías ágiles y más. Nuestro objetivo es
+    proporcionar educación accesible a estudiantes de todo el mundo.
+  </p>
+
+  <h2 class="text-2xl font-semibold text-purple-600 mt-10 mb-4">
+    2. Registro y Cuenta de Usuario
+  </h2>
+  <p class="text-gray-700 mb-6">
+    Para acceder a ciertos cursos y funcionalidades, debes crear una cuenta en
+    nuestra plataforma. Te comprometes a proporcionar información veraz,
+    actualizada y completa durante el registro, y a mantener actualizados tus
+    datos.
+  </p>
+  <p class="text-gray-700 mb-6">
+    Eres responsable de mantener la confidencialidad de tu contraseña y de todas
+    las actividades que ocurran en tu cuenta.
+  </p>
+
+  <h2 class="text-2xl font-semibold text-purple-600 mt-10 mb-4">
+    3. Uso Aceptable
+  </h2>
+  <p class="text-gray-700 mb-6">
+    Aceptas utilizar este sitio solo con fines educativos y de acuerdo con las
+    leyes aplicables. Está prohibido:
+  </p>
+  <ul class="list-disc list-inside text-gray-700 mb-6">
+    <li>Utilizar el contenido con fines comerciales sin permiso escrito.</li>
+    <li>Copiar, distribuir o modificar material sin autorización.</li>
+    <li>Introducir virus, malware o cualquier otro código malicioso.</li>
+    <li>
+      Realizar ingeniería inversa, descompilar o intentar extraer el código
+      fuente de la plataforma.
+    </li>
+  </ul>
+
+  <h2 class="text-2xl font-semibold text-purple-600 mt-10 mb-4">
+    4. Propiedad Intelectual
+  </h2>
+  <p class="text-gray-700 mb-6">
+    Todo el contenido disponible en
+    <span class="font-semibold text-purple-600">CodeMentorEngineering</span>,
+    incluyendo textos, videos, material descargable, gráficos y logotipos, es
+    propiedad de
+    <span class="font-semibold text-purple-600">CodeMentorEngineering</span> o
+    de sus licenciantes, y está protegido por las leyes de propiedad
+    intelectual.
+  </p>
+  <p class="text-gray-700 mb-6">
+    El acceso a los cursos no implica la transferencia de derechos sobre ningún
+    material.
+  </p>
+
+  <h2 class="text-2xl font-semibold text-purple-600 mt-10 mb-4">
+    5. Certificados y Reconocimientos
+  </h2>
+  <p class="text-gray-700 mb-6">
+    Al completar ciertos cursos, podrás recibir certificados de participación.
+    Estos certificados:
+  </p>
+  <ul class="list-disc list-inside text-gray-700 mb-6">
+    <li>No constituyen títulos oficiales ni acreditaciones universitarias.</li>
+    <li>
+      Son un reconocimiento del esfuerzo y tiempo dedicado al aprendizaje.
+    </li>
+  </ul>
+
+  <h2 class="text-2xl font-semibold text-purple-600 mt-10 mb-4">
+    6. Modificaciones de Cursos y Contenido
+  </h2>
+  <p class="text-gray-700 mb-6">
+    Nos reservamos el derecho de modificar, actualizar, eliminar o agregar
+    cursos y recursos en cualquier momento, sin necesidad de aviso previo.
+  </p>
+
+  <h2 class="text-2xl font-semibold text-purple-600 mt-10 mb-4">
+    7. Limitación de Responsabilidad
+  </h2>
+  <p class="text-gray-700 mb-6">
+    Aunque hacemos esfuerzos razonables para mantener el contenido actualizado y
+    correcto, no garantizamos que toda la información sea completa, precisa o
+    libre de errores.
+  </p>
+  <p class="text-gray-700 mb-6">
+    <span class="font-semibold text-purple-600">CodeMentorEngineering</span> no
+    será responsable de:
+  </p>
+  <ul class="list-disc list-inside text-gray-700 mb-6">
+    <li>Daños directos o indirectos derivados del uso de la plataforma.</li>
+    <li>
+      Pérdida de datos o daños en dispositivos causados por el acceso a nuestro
+      sitio.
+    </li>
+  </ul>
+  <p class="text-gray-700 mb-6">
+    El uso de los cursos y materiales es bajo tu propio riesgo.
+  </p>
+
+  <h2 class="text-2xl font-semibold text-purple-600 mt-10 mb-4">
+    8. Enlaces a Terceros
+  </h2>
+  <p class="text-gray-700 mb-6">
+    Nuestro sitio puede contener enlaces a sitios web de terceros. No somos
+    responsables del contenido, políticas o prácticas de privacidad de esos
+    sitios.
+  </p>
+
+  <h2 class="text-2xl font-semibold text-purple-600 mt-10 mb-4">
+    9. Cambios en los Términos
+  </h2>
+  <p class="text-gray-700 mb-6">
+    Nos reservamos el derecho de actualizar o modificar estos Términos y
+    Condiciones en cualquier momento. Te notificaremos mediante publicación en
+    el sitio web y/o por correo electrónico.
+  </p>
+  <p class="text-gray-700 mb-6">
+    El uso continuado del sitio después de los cambios constituye la aceptación
+    de los nuevos términos.
+  </p>
+
+  <h2 class="text-2xl font-semibold text-purple-600 mt-10 mb-4">
+    10. Ley Aplicable
+  </h2>
+  <p class="text-gray-700 mb-6">
+    Estos términos se regirán e interpretarán de acuerdo con las leyes de [País
+    o Estado aplicable], sin perjuicio de los principios de conflicto de leyes.
+  </p>
+
+  <h2 class="text-2xl font-semibold text-purple-600 mt-10 mb-4">
+    11. Contacto
+  </h2>
+  <p class="text-gray-700 mb-6">
+    Si tienes preguntas sobre estos Términos y Condiciones, puedes comunicarte
+    con nosotros en:
+  </p>
+  <ul class="list-disc list-inside text-gray-700 mb-6">
+    <li>
+      Correo electrónico:
+      <span class="font-semibold text-purple-600">correo@example.com</span>
+    </li>
+    <li>
+      Dirección postal:
+      <span class="font-semibold text-purple-600"
+        >Av. Jose Jesús Macias Delgado 18100, Ciudad Universitaria, 32000,
+        Juárez, Chih.</span
+      >
+    </li>
+  </ul>
+</div>
+{% endblock %}
