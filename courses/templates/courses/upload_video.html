@@ -1,11 +1,11 @@
 {% extends "base.html" %}
 {% block content %}
 <div class="container mx-auto py-12">
-    <h2 class="text-3xl font-bold mb-6">Upload Video</h2>
+    <h2 class="text-3xl font-bold mb-6">Subir Video</h2>
     <form method="post" enctype="multipart/form-data">
         {% csrf_token %}
         {{ form.as_p }}
-        <button type="submit" class="btn btn-primary">Upload</button>
+        <button type="submit" class="btn btn-primary">Subir</button>
     </form>
 </div>
 {% endblock %}
