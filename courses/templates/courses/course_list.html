@@ -9,10 +9,10 @@
         <div class="flex gap-4">
             <!-- Campo de búsqueda por nombre o descripción -->
             <input type="text" name="q" placeholder="Buscar por nombre o descripción"
-                   value="{{ query }}" class="border p-2 rounded w-full">
+                   value="" class="border p-2 rounded w-full hover:border-purple-500 focus:outline-none focus:ring-2 focus:ring-purple-500">
 
             <!-- Selector de categorías -->
-            <select name="category" class="border p-2 rounded w-full">
+            <select name="category" class="border p-2 rounded w-full bg-white hover:border-purple-500 focus:outline-none focus:ring-2 focus:ring-purple-500">
                 <option value="">Todas las categorías</option>
                 {% for cat in categories %}
                 <option value="{{ cat.id }}" {% if category == cat.id|stringformat:"s" %}selected{% endif %}>
@@ -22,19 +22,20 @@
             </select>
 
             <!-- Botón de búsqueda -->
-            <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded">Buscar</button>
+            <button type="submit" class="bg-purple-600 text-white px-4 py-2 rounded hover:scale-105 transition transform duration-200">Buscar</button>
         </div>
     </form>
 
     <!-- Lista de cursos -->
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {% for course in page_obj %}
-        <div class="bg-white p-6 rounded shadow hover:shadow-lg transition">
+        <div class="bg-white p-6 rounded hover:shadow-lg hover:scale-105 transition transform duration-200 cursor-pointer" onclick="window.location.href='{% url 'courses:course_detail' course.id %}'">
             <h3 class="text-xl font-semibold mb-2">{{ course.title }}</h3>
             <p class="text-gray-600 mb-4">{{ course.short_description }}</p>
+            <img src="{{ course.image.url }}" alt="{{ course.title }}" class="w-full h-48 object-cover mb-4 rounded">
             <p><strong>Categoría:</strong> {{ course.category.name }}</p>
-            <a href="{% url 'courses:course_detail' course.id %}" class="text-blue-600 font-semibold hover:underline">
-                Ver detalles →
+            <a href="{% url 'courses:course_detail' course.id %}" class="text-purple-600 font-semibold hover:underline">
+            Ver detalles →
             </a>
         </div>
         {% empty %}
@@ -49,14 +50,14 @@
                 {% if page_obj.has_previous %}
                 <li>
                     <a href="?page={{ page_obj.previous_page_number }}&q={{ query }}&category={{ category }}"
-                       class="px-3 py-2 bg-gray-200 text-gray-700 rounded-l hover:bg-gray-300">Anterior</a>
+                       class="px-3 py-2 bg-purple-400 text-gray-700 rounded-l hover:bg-purple-500">Anterior</a>
                 </li>
                 {% endif %}
 
                 {% for num in page_obj.paginator.page_range %}
                 <li>
                     <a href="?page={{ num }}&q={{ query }}&category={{ category }}"
-                       class="px-3 py-2 {% if page_obj.number == num %}bg-blue-500 text-white{% else %}bg-gray-200 text-gray-700{% endif %} hover:bg-gray-300">
+                       class="px-3 py-2 {% if page_obj.number == num %}bg-purple-600 text-white{% else %}bg-purple-400 text-gray-700{% endif %} hover:bg-purple-500">
                         {{ num }}
                     </a>
                 </li>
@@ -65,7 +66,7 @@
                 {% if page_obj.has_next %}
                 <li>
                     <a href="?page={{ page_obj.next_page_number }}&q={{ query }}&category={{ category }}"
-                       class="px-3 py-2 bg-gray-200 text-gray-700 rounded-r hover:bg-gray-300">Siguiente</a>
+                       class="px-3 py-2 bg-purple-400 text-gray-700 rounded-r hover:bg-purple-500">Siguiente</a>
                 </li>
                 {% endif %}
             </ul>
