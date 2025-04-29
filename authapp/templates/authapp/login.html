@@ -1,22 +1,22 @@
 {% extends "base.html" %}
 {% block content %}
 <div class="container mx-auto py-12 max-w-md">
-    <h2 class="text-3xl font-bold text-blue-600 mb-6">Inicio de sesión</h2>
+    <h2 class="text-3xl font-bold text-purple-600 mb-6">Inicio de sesión</h2>
     <form method="post" class="bg-white p-8 rounded-lg shadow-lg space-y-4">
         {% csrf_token %}
         {% for field in form %}
             <div>
-                <label class="block mb-1 text-blue-700 font-semibold">{{ field.label }}</label>
+                <label class="block mb-1 text-purple-700 font-semibold">{{ field.label }}</label>
                 {{ field }}
                 {% if field.errors %}
                     <p class="text-red-500 text-sm">{{ field.errors }}</p>
                 {% endif %}
             </div>
         {% endfor %}
-        <button type="submit" class="w-full bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-lg">Iniciar sesión</button>
+        <button type="submit" class="w-full bg-purple-500 hover:bg-purple-600 text-white font-bold py-2 px-4 rounded-lg">Iniciar sesión</button>
     </form>
     <div class="mt-4 text-center">
-        <p class="text-gray-600">¿No tienes una cuenta? <a href="{% url 'authapp:register' %}" class="text-blue-500 hover:underline">Regístrate</a></p>
+        <p class="text-gray-600">¿No tienes una cuenta? <a href="{% url 'authapp:register' %}" class="text-purple-500 hover:underline">Regístrate</a></p>
     </div>
 </div>
 {% endblock %}

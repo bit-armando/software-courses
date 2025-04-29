@@ -5,14 +5,14 @@ class UserRegistrationForm(forms.ModelForm):
     password = forms.CharField(
             label="Contraseña",
             widget=forms.PasswordInput(attrs={
-                'class': 'w-full p-3 border rounded-lg bg-white border-blue-400 focus:outline-none focus:ring-2 focus:ring-blue-500',
+                'class': 'w-full p-3 border rounded-lg bg-white border-purple-400 focus:outline-none focus:ring-2 focus:ring-purple-500',
                 'placeholder': 'Contraseña'
             })
         )
     confirm_password = forms.CharField(
         label="Confirmar Contraseña",
         widget=forms.PasswordInput(attrs={
-            'class': 'w-full p-3 border rounded-lg bg-white border-blue-400 focus:outline-none focus:ring-2 focus:ring-blue-500',
+            'class': 'w-full p-3 border rounded-lg bg-white border-purple-400 focus:outline-none focus:ring-2 focus:ring-purple-500',
             'placeholder': 'Confirmar Contraseña'
             })
         )
@@ -29,19 +29,19 @@ class UserRegistrationForm(forms.ModelForm):
         }
         widgets = {
             'username': forms.TextInput(attrs={
-            'class': 'w-full p-3 border rounded-lg bg-white border-blue-400 focus:outline-none focus:ring-2 focus:ring-blue-500',
+            'class': 'w-full p-3 border rounded-lg bg-white border-purple-400 focus:outline-none focus:ring-2 focus:ring-purple-500',
             'placeholder': 'Username'
             }),
             'email': forms.EmailInput(attrs={
-            'class': 'w-full p-3 border rounded-lg bg-white border-blue-400 focus:outline-none focus:ring-2 focus:ring-blue-500',
+            'class': 'w-full p-3 border rounded-lg bg-white border-purple-400 focus:outline-none focus:ring-2 focus:ring-purple-500',
             'placeholder': 'Email'
             }),
             'first_name': forms.TextInput(attrs={
-            'class': 'w-full p-3 border rounded-lg bg-white border-blue-400 focus:outline-none focus:ring-2 focus:ring-blue-500',
+            'class': 'w-full p-3 border rounded-lg bg-white border-purple-400 focus:outline-none focus:ring-2 focus:ring-purple-500',
             'placeholder': 'Primer Nombre'
             }),
             'last_name': forms.TextInput(attrs={
-            'class': 'w-full p-3 border rounded-lg bg-white border-blue-400 focus:outline-none focus:ring-2 focus:ring-blue-500',
+            'class': 'w-full p-3 border rounded-lg bg-white border-purple-400 focus:outline-none focus:ring-2 focus:ring-purple-500',
             'placeholder': 'Apellido'
             }),
         }
@@ -61,14 +61,14 @@ class UserLoginForm(forms.Form):
     email = forms.EmailField(
         label="Email",
         widget=forms.EmailInput(attrs={
-            'class': 'w-full p-3 border rounded-lg bg-white border-blue-400 focus:outline-none focus:ring-2 focus:ring-blue-500',
+            'class': 'w-full p-3 border rounded-lg bg-white border-purple-400 focus:outline-none focus:ring-2 focus:ring-purple-500',
             'placeholder': 'Email'
         })
     )
     password = forms.CharField(
         label="Contraseña",
         widget=forms.PasswordInput(attrs={
-            'class': 'w-full p-3 border rounded-lg bg-white border-blue-400 focus:outline-none focus:ring-2 focus:ring-blue-500',
+            'class': 'w-full p-3 border rounded-lg bg-white border-purple-400 focus:outline-none focus:ring-2 focus:ring-purple-500',
             'placeholder': 'Contraseña'
         })
     )
