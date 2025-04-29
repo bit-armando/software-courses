@@ -1,90 +1,109 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <!-- Hero / Sección Principal -->
-    <section class="bg-purple-600 text-white">
-        <div class="container mx-auto px-4 py-12 flex flex-col md:flex-row items-center">
-            <!-- Texto -->
-            <div class="md:w-1/2 mb-8 md:mb-0">
-                <h1 class="text-4xl md:text-5xl font-bold mb-4">Logra tus metas de aprendizaje</h1>
-                <p class="text-lg md:text-xl mb-6">
-                    Descubre las mejores metodologías, programas y herramientas para crecer profesionalmente.
-                </p>
-                <a href="#categorias" class="inline-block bg-white text-purple-600 px-6 py-3 rounded font-semibold hover:bg-gray-100 transition">
-                    Explorar Categorías
-                </a>
-            </div>
-            <!-- Imagen de ejemplo (puedes reemplazarla) -->
-            <div class="md:w-1/2 flex justify-center">
-                <img src="https://images.unsplash.com/photo-1581092331678-5ba05d01c3fa?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Estudiantes" class="w-full h-auto rounded shadow-lg">
-            </div>
-        </div>
-    </section>
+<!-- Hero / Sección Principal -->
+<section class="bg-gradient-to-r from-purple-600 to-indigo-600 text-white">
+  <div class="container mx-auto px-4 py-20 flex flex-col md:flex-row items-center gap-12">
+    <!-- Texto -->
+    <div class="md:w-1/2 text-center md:text-left">
+      <h1 class="text-4xl md:text-5xl font-bold mb-6 leading-tight">
+        Logra tus metas de aprendizaje
+      </h1>
+      <p class="text-lg md:text-xl mb-8">
+        Descubre las mejores metodologías, programas y herramientas para crecer profesionalmente.
+      </p>
+      <a href="#categorias" class="inline-block bg-white text-purple-600 px-8 py-4 rounded-lg font-bold hover:bg-gray-100 transition transform hover:scale-105">
+        Explorar Categorías
+      </a>
+    </div>
 
-    <!-- Sección de Instituciones / Universidades (opcional) -->
-    <section class="py-8 bg-white">
-        <div class="container mx-auto px-4">
-            <h2 class="text-2xl md:text-3xl font-bold text-center mb-8">Aprende de las mejores instituciones</h2>
-            <div class="flex flex-wrap justify-center items-center space-x-4 space-y-4 md:space-y-0">
-                <!-- Logos de ejemplo (reemplazar con los tuyos) -->
-                <img src="https://upload.wikimedia.org/wikipedia/commons/a/a3/Logo-Round.png" alt="Logo1" class="h-10">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/4/4e/MIT_Seal.svg" alt="Logo2" class="h-10">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/b/b6/Image_created_with_a_mobile_phone.png" alt="Logo3" class="h-10">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/3/3f/Logo_BBC_World_News_%282019%29.svg" alt="Logo4" class="h-10">
-            </div>
-        </div>
-    </section>
+    <!-- Imagen -->
+    <div class="md:w-1/2">
+      <img src="https://images.unsplash.com/photo-1581092331678-5ba05d01c3fa?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
+           alt="Estudiantes" 
+           class="w-full h-auto rounded-lg shadow-2xl animate-fade-in-up">
+    </div>
+  </div>
+</section>
 
-    <!-- Sección de Categorías -->
-    <section id="categorias" class="py-12 bg-gray-50">
-        <div class="container mx-auto px-4">
-            <h2 class="text-3xl font-bold text-center mb-8">Categorías</h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                <!-- Tarjeta 1 -->
-                <div class="bg-white p-6 rounded shadow hover:shadow-lg transition">
-                    <h3 class="text-xl font-semibold mb-2">Documentación</h3>
-                    <p class="text-gray-600 mb-4">
-                        Explora recursos avanzados y guías para profundizar tus conocimientos.
-                    </p>
-                    <a href="#" class="text-purple-600 font-semibold hover:underline">Ver más →</a>
-                </div>
-                <!-- Tarjeta 2 -->
-                <div class="bg-white p-6 rounded shadow hover:shadow-lg transition">
-                    <h3 class="text-xl font-semibold mb-2">Metodologías</h3>
-                    <p class="text-gray-600 mb-4">
-                        Descubre nuevas formas de organizar y planificar tus proyectos.
-                    </p>
-                    <a href="#" class="text-purple-600 font-semibold hover:underline">Ver más →</a>
-                </div>
-                <!-- Tarjeta 3 -->
-                <div class="bg-white p-6 rounded shadow hover:shadow-lg transition">
-                    <h3 class="text-xl font-semibold mb-2">Programación</h3>
-                    <p class="text-gray-600 mb-4">
-                        Mejora tus habilidades de desarrollo con tutoriales y proyectos prácticos.
-                    </p>
-                    <a href="#" class="text-purple-600 font-semibold hover:underline">Ver más →</a>
-                </div>
-                <!-- Tarjeta 4 -->
-                <div class="bg-white p-6 rounded shadow hover:shadow-lg transition">
-                    <h3 class="text-xl font-semibold mb-2">Herramientas</h3>
-                    <p class="text-gray-600 mb-4">
-                        Explora software y plataformas para optimizar tu flujo de trabajo.
-                    </p>
-                    <a href="#" class="text-purple-600 font-semibold hover:underline">Ver más →</a>
-                </div>
-            </div>
-        </div>
-    </section>
+<!-- Sección de Instituciones -->
+<section class="py-16 bg-white">
+  <div class="container mx-auto px-4">
+    <h2 class="text-3xl md:text-4xl font-bold text-center mb-12">Aprende de las mejores instituciones</h2>
+    <div class="flex flex-wrap justify-center gap-8 items-center">
+      <!-- Logos -->
+      <img src="https://upload.wikimedia.org/wikipedia/commons/a/a3/Logo-Round.png" alt="Logo1" class="h-12 grayscale hover:grayscale-0 transition">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/4/4e/MIT_Seal.svg" alt="Logo2" class="h-12 grayscale hover:grayscale-0 transition">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/b/b6/Image_created_with_a_mobile_phone.png" alt="Logo3" class="h-12 grayscale hover:grayscale-0 transition">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/3/3f/Logo_BBC_World_News_%282019%29.svg" alt="Logo4" class="h-12 grayscale hover:grayscale-0 transition">
+    </div>
+  </div>
+</section>
 
-    <!-- Sección de Llamado a la Acción (CTA) -->
-    <section class="py-12 bg-purple-700 text-white text-center">
-        <div class="container mx-auto px-4">
-            <h2 class="text-3xl font-bold mb-4">¿Listo para comenzar?</h2>
-            <p class="mb-6">Regístrate hoy y desbloquea todos los recursos de aprendizaje.</p>
-            <a href="#" class="inline-block bg-white text-purple-500 px-6 py-3 rounded font-semibold hover:bg-gray-100 transition">
-                Crear Cuenta Gratis
-            </a>
+<!-- Sección de Categorías -->
+<section id="categorias" class="py-20 bg-gray-50">
+  <div class="container mx-auto px-4">
+    <h2 class="text-3xl font-bold text-center mb-14">Categorías</h2>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+      <!-- Tarjeta -->
+      <div class="bg-white p-8 rounded-lg shadow hover:shadow-xl transition group text-center">
+        <div class="text-purple-600 mb-4">
+          <span class="material-symbols-outlined text-5xl group-hover:scale-110 transition">description</span>
         </div>
-    </section>
+        <h3 class="text-xl font-semibold mb-3">Documentación</h3>
+        <p class="text-gray-600 mb-5">
+          Explora recursos avanzados y guías detalladas.
+        </p>
+        <a href="#" class="text-purple-600 font-semibold hover:underline">Ver más →</a>
+      </div>
 
+      <!-- Tarjeta -->
+      <div class="bg-white p-8 rounded-lg shadow hover:shadow-xl transition group text-center">
+        <div class="text-purple-600 mb-4">
+          <span class="material-symbols-outlined text-5xl group-hover:scale-110 transition">flowchart</span>
+        </div>
+        <h3 class="text-xl font-semibold mb-3">Metodologías</h3>
+        <p class="text-gray-600 mb-5">
+          Organiza y planifica tus proyectos de forma efectiva.
+        </p>
+        <a href="#" class="text-purple-600 font-semibold hover:underline">Ver más →</a>
+      </div>
+
+      <!-- Tarjeta -->
+      <div class="bg-white p-8 rounded-lg shadow hover:shadow-xl transition group text-center">
+        <div class="text-purple-600 mb-4">
+          <span class="material-symbols-outlined text-5xl group-hover:scale-110 transition">code</span>
+        </div>
+        <h3 class="text-xl font-semibold mb-3">Programación</h3>
+        <p class="text-gray-600 mb-5">
+          Mejora tus habilidades de desarrollo de software.
+        </p>
+        <a href="#" class="text-purple-600 font-semibold hover:underline">Ver más →</a>
+      </div>
+
+      <!-- Tarjeta -->
+      <div class="bg-white p-8 rounded-lg shadow hover:shadow-xl transition group text-center">
+        <div class="text-purple-600 mb-4">
+          <span class="material-symbols-outlined text-5xl group-hover:scale-110 transition">build</span>
+        </div>
+        <h3 class="text-xl font-semibold mb-3">Herramientas</h3>
+        <p class="text-gray-600 mb-5">
+          Usa el mejor software para potenciar tu productividad.
+        </p>
+        <a href="#" class="text-purple-600 font-semibold hover:underline">Ver más →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Sección CTA -->
+<section class="py-20 bg-gradient-to-r from-purple-700 to-indigo-700 text-white text-center">
+  <div class="container mx-auto px-4">
+    <h2 class="text-4xl font-bold mb-6">¿Listo para comenzar?</h2>
+    <p class="text-lg mb-8">Crea una cuenta gratuita y desbloquea todo nuestro contenido premium.</p>
+    <a href="/auth/register" class="inline-block bg-white text-purple-700 px-8 py-4 rounded-lg font-bold hover:bg-gray-100 transition transform hover:scale-105">
+      Crear Cuenta Gratis
+    </a>
+  </div>
+</section>
 {% endblock %}
