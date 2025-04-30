@@ -1,11 +1,24 @@
 {% extends "base.html" %}
 {% block content %}
 <div class="container mx-auto py-12">
-    <h2 class="text-3xl font-bold mb-6">Subir Video</h2>
-    <form method="post" enctype="multipart/form-data">
+    <h2 class="text-3xl font-bold mb-6 text-purple-600">Subir Video</h2>
+    <form method="post" enctype="multipart/form-data" class="space-y-6">
         {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit" class="btn btn-primary">Subir</button>
+        <div class="space-y-4">
+            {{ form.non_field_errors }}
+            {% for field in form %}
+                <div>
+                    {{ field.label_tag }}
+                    {{ field }}
+                    {% if field.errors %}
+                        <p class="text-red-500 text-sm mt-1">{{ field.errors }}</p>
+                    {% endif %}
+                </div>
+            {% endfor %}
+        </div>
+        <button type="submit" class="w-full p-3 bg-purple-500 text-white font-bold rounded-lg hover:bg-purple-600 focus:outline-none focus:ring-2 focus:ring-purple-500">
+            Subir
+        </button>
     </form>
 </div>
 {% endblock %}
