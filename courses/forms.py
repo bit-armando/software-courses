@@ -1,4 +1,5 @@
 from django.forms import ModelForm
+from django import forms
 from .models import Course, Comment, Response
 from software_courses.storage_backends import MediaStorage
 
@@ -7,6 +8,31 @@ class CourseForm(ModelForm):
     class Meta:
         model = Course
         fields = ['title', 'category', 'image', 'short_description', 'description', 'video']
+        widgets = {
+            'title': forms.TextInput(attrs={
+                'class': 'w-full p-3 border rounded-lg bg-white border-purple-400 focus:outline-none focus:ring-2 focus:ring-purple-500',
+                'placeholder': 'Título del curso'
+            }),
+            'category': forms.Select(attrs={
+                'class': 'w-full p-3 border rounded-lg bg-white border-purple-400 focus:outline-none focus:ring-2 focus:ring-purple-500',
+            }),
+            'image': forms.ClearableFileInput(attrs={
+                'class': 'w-full p-3 border rounded-lg bg-white border-purple-400 focus:outline-none focus:ring-2 focus:ring-purple-500',
+            }),
+            'short_description': forms.Textarea(attrs={
+                'class': 'w-full p-3 border rounded-lg bg-white border-purple-400 focus:outline-none focus:ring-2 focus:ring-purple-500',
+                'placeholder': 'Breve descripción',
+                'rows': 3
+            }),
+            'description': forms.Textarea(attrs={
+                'class': 'w-full p-3 border rounded-lg bg-white border-purple-400 focus:outline-none focus:ring-2 focus:ring-purple-500',
+                'placeholder': 'Descripción completa',
+                'rows': 5
+            }),
+            'video': forms.ClearableFileInput(attrs={
+                'class': 'w-full p-3 border rounded-lg bg-white border-purple-400 focus:outline-none focus:ring-2 focus:ring-purple-500',
+            }),
+        }
 
     def save(self, commit=True):
         instance = super().save(commit=False)
