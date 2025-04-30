@@ -12,6 +12,9 @@ from utils.courses import get_url_without_query
 
 @login_required(login_url='/auth/login/')
 def upload_video(request):
+    if not request.user.is_superuser:
+        return redirect('courses:list_courses')  # Redirigir si no es superusuario
+
     if request.method == 'POST':
         form = CourseForm(request.POST, request.FILES)
         if form.is_valid():
