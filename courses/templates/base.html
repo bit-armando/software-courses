@@ -21,44 +21,59 @@
   <body class="bg-gray-50 text-gray-800">
     <!-- Header / Navbar -->
     <header class="bg-white shadow">
+      <style>
+        @keyframes gradient {
+          0% {
+            background-position: 0% 50%;
+          }
+          50% {
+            background-position: 100% 50%;
+          }
+          100% {
+            background-position: 0% 50%;
+          }
+        }
+      
+        .animated-gradient {
+            background: linear-gradient(to right, #7b3aed, #5046e5);
+          background-size: 400% 400%;
+          animation: gradient 15s ease infinite;
+        }
+      </style>
+      
       <div
-        class="container mx-auto px-4 py-4 flex justify-between items-center"
+        class="w-full px-4 py-4 flex justify-between items-center animated-gradient"
       >
         <!-- Logo / Nombre -->
-        <a href="/" class="text-2xl font-bold text-purple-600">CodeMentorEngineering</a>
+        <a href="/" class="text-2xl font-bold text-white">CodeMentorEngineering</a>
 
         <!-- Menu -->
         <nav class="hidden md:flex space-x-8">
-          <a href="/" class="flex flex-col items-center text-gray-600 hover:text-purple-600" >
+          <a href="/" class="flex flex-col items-center text-white hover:text-purple-200" >
             <span class="material-symbols-outlined text-3xl">home</span>
             <span class="text-sm">Inicio</span>
           </a>
 
-          <a href="{% url 'courses:list_courses' %}" class="flex flex-col items-center text-gray-600 hover:text-purple-600" >
+          <a href="{% url 'courses:list_courses' %}" class="flex flex-col items-center text-white hover:text-purple-200" >
             <span class="material-symbols-outlined text-3xl">filter_list</span>
             <span class="text-sm">Categorías</span>
           </a>
 
-          <a href="#" class="flex flex-col items-center text-gray-600 hover:text-purple-600" >
-            <span class="material-symbols-outlined text-3xl">edit_note</span>
-            <span class="text-sm">Documentación</span>
-          </a>
-
           {% if user.is_authenticated and user.is_superuser  %}
-          <a href="{% url 'courses:upload_video' %}" class="flex flex-col items-center text-gray-600 hover:text-purple-600" >
+          <a href="{% url 'courses:upload_video' %}" class="flex flex-col items-center text-white hover:text-purple-200" >
             <span class="material-symbols-outlined text-3xl">upload_file</span>
             <span class="text-sm">Subir Curso</span>
           </a>
           {% endif %}
           {% if user.is_authenticated %}
-          <a href="{% url 'authapp:logout' %}" class="flex flex-col items-center text-gray-600 hover:text-purple-600" >
+          <a href="{% url 'authapp:logout' %}" class="flex flex-col items-center text-white hover:text-purple-200" >
             <span class="material-symbols-outlined text-3xl"
               >account_circle</span
             >
             <span class="text-sm">Logout</span>
           </a>
           {% else %}
-          <a href="{% url 'authapp:login' %}" class="flex flex-col items-center text-gray-600 hover:text-purple-600" >
+          <a href="{% url 'authapp:login' %}" class="flex flex-col items-center text-white hover:text-purple-200" >
             <span class="material-symbols-outlined text-3xl">account_circle</span>
             <span class="text-sm">Login / Registro</span>
           </a>
@@ -67,7 +82,7 @@
 
         <!-- Botón para mobile -->
         <button
-          class="md:hidden px-2 py-1 text-gray-600 focus:outline-none focus:ring-2 focus:ring-purple-600"
+          class="md:hidden px-2 py-1 text-white focus:outline-none focus:ring-2 focus:ring-purple-200"
         >
           <!-- Ícono de menú (hamburguesa) -->
           <svg
@@ -98,12 +113,12 @@
         <!-- Información Legal -->
         <div class="mb-4 md:mb-0">
           <h3 class="font-semibold">Enlaces Legales</h3>
-          <ul class="text-gray-600">
+          <ul class="text-white">
             <li>
-              <a href="{% url 'landingpage:terms' %}" class="hover:text-purple-600">Términos y Condiciones</a>
+              <a href="{% url 'landingpage:terms' %}" class="hover:text-purple-200">Términos y Condiciones</a>
             </li>
             <li>
-              <a href="{% url 'landingpage:privacy' %}" class="hover:text-purple-600">Política de Privacidad</a>
+              <a href="{% url 'landingpage:privacy' %}" class="hover:text-purple-200">Política de Privacidad</a>
             </li>
           </ul>
         </div>
@@ -111,20 +126,20 @@
         <!-- Redes Sociales -->
         <div class="mb-4 md:mb-0 ">
           <h3 class="font-semibold">Redes Sociales</h3>
-          <ul class="flex flex-col justify-start space-y-2 text-gray-600">
-            <a href="https://www.youtube.com/watch?v=hvL1339luv0&pp=ygUIcmlja3JvbGw%3D" target="_blank" class="hover:text-purple-600 flex items-center space-x-1">
+          <ul class="flex flex-col justify-start space-y-2 text-white">
+            <a href="https://www.youtube.com/watch?v=hvL1339luv0&pp=ygUIcmlja3JvbGw%3D" target="_blank" class="hover:text-purple-200 flex items-center space-x-1">
               <i class="fa-brands fa-square-x-twitter"></i>
               <span>Twitter</span>
             </a>
-            <a href="https://www.youtube.com/watch?v=2GXlAJPa-KM&pp=ygUbcmlja3JvbGwgZGlmZmVyZW50IHZlcnNpb25z" target="_blank" class="hover:text-purple-600 flex items-center space-x-1">
+            <a href="https://www.youtube.com/watch?v=2GXlAJPa-KM&pp=ygUbcmlja3JvbGwgZGlmZmVyZW50IHZlcnNpb25z" target="_blank" class="hover:text-purple-200 flex items-center space-x-1">
               <i class="fa-brands fa-square-facebook"></i>
               <span>Facebook</span>
             </a>
-            <a href="https://youtu.be/ow5XgHDkPOQ?t=175" target="_blank" class="hover:text-purple-600 flex items-center space-x-1">
+            <a href="https://youtu.be/ow5XgHDkPOQ?t=175" target="_blank" class="hover:text-purple-200 flex items-center space-x-1">
               <i class="fa-brands fa-linkedin"></i>
               <span>LinkedIn</span>
             </a>
-            <a href="https://www.youtube.com/watch?v=xvFZjo5PgG0&pp=ygUVcmljayByb2xsIHdpdGggbm8gYWRz" target="_blank" class="hover:text-purple-600 flex items-center space-x-1">
+            <a href="https://www.youtube.com/watch?v=xvFZjo5PgG0&pp=ygUVcmljayByb2xsIHdpdGggbm8gYWRz" target="_blank" class="hover:text-purple-200 flex items-center space-x-1">
               <i class="fa-solid fa-fan"></i>
               <span>OnlyFans</span>
             </a>
@@ -134,7 +149,7 @@
         <!-- Información Adicional -->
         <div>
           <h3 class="font-semibold">Información Adicional</h3>
-          <p class="text-gray-600">Contacto: info@tusitioaprendizaje.com</p>
+          <p class="text-white">Contacto: info@tusitioaprendizaje.com</p>
         </div>
       </div>
     </footer>
