@@ -5,7 +5,7 @@ from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator
 from django.db.models import Q
 
-from .models import Course,Comment,Response,CategoryCourse,Material
+from .models import Course,Comment,Response,CategoryCourse,Material, CourseHistory
 from authapp.models import Person
 
 from .forms import CourseForm, MaterialForm
@@ -117,6 +117,10 @@ def course_detail(request, course_id):
     course = get_object_or_404(Course, id=course_id)
     person = get_object_or_404(Person, user=request.user)
 
+    # Registrar el curso en el historial
+    if request.user.is_authenticated:
+        CourseHistory.objects.get_or_create(user=request.user, course=course)
+
     # Obtener la URL del video sin parámetros de consulta
     if course.video:
         video_url = get_url_without_query(str(course.video))
@@ -153,3 +157,9 @@ def course_detail(request, course_id):
         'materials': materials,
         'video_url': video_url,
     })
+
+
+@login_required(login_url='/auth/login/')
+def course_history(request):
+    history = CourseHistory.objects.filter(user=request.user).order_by('-viewed_at')
+    return render(request, 'courses/course_history.html', {'history': history})

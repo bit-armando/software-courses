@@ -55,3 +55,12 @@ class Material(models.Model):
 
     def __str__(self):
         return f'{self.title} - {self.course.title}'
+
+
+class CourseHistory(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='course_history')
+    course = models.ForeignKey(Course, on_delete=models.CASCADE)
+    viewed_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"{self.user.username} - {self.course.title}"

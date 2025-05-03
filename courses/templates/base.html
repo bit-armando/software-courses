@@ -59,6 +59,13 @@
             <span class="text-sm">Categorías</span>
           </a>
 
+          {% if user.is_authenticated %}
+          <a href="{% url 'courses:course_history' %}" class="flex flex-col items-center text-white hover:text-purple-200" >
+            <span class="material-symbols-outlined text-3xl">history</span>
+            <span class="text-sm">Historial</span>
+          </a>
+          {% endif %}
+
           {% if user.is_authenticated and user.is_superuser  %}
           <a href="{% url 'courses:upload_video' %}" class="flex flex-col items-center text-white hover:text-purple-200" >
             <span class="material-symbols-outlined text-3xl">upload_file</span>
