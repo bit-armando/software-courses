@@ -1,13 +1,14 @@
 from django.shortcuts import render, redirect, get_object_or_404
+from django.forms import modelformset_factory
 from software_courses.storage_backends import MediaStorage
 from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator
 from django.db.models import Q
 
-from .models import Course ,Comment ,Response, CategoryCourse
+from .models import Course,Comment,Response,CategoryCourse,Material
 from authapp.models import Person
 
-from .forms import CourseForm
+from .forms import CourseForm, MaterialForm
 from utils.courses import get_url_without_query
 
 @login_required(login_url='/auth/login/')
@@ -16,21 +17,26 @@ def upload_video(request):
         return redirect('courses:list_courses')  # Redirigir si no es superusuario
 
     if request.method == 'POST':
-        form = CourseForm(request.POST, request.FILES)
-        if form.is_valid():
-            # Guardar el curso y subir el video a S3
-            course = form.save(commit=False)
-            if 'video' in request.FILES:
-                video = request.FILES['video']
-                media_storage = MediaStorage()
-                video_name = media_storage.save(f"videos/{video.name}", video)
-                course.video = media_storage.url(video_name)
+        course_form = CourseForm(request.POST, request.FILES)
+
+        if course_form.is_valid():
+            # Guardar el curso
+            course = course_form.save(commit=False)
+            # course.person = Person.objects.get(user=request.user)  # Relacionar con el usuario actual
             course.save()
+
+            # Procesar múltiples archivos subidos
+            files = request.FILES.getlist('file')  # Obtener todos los archivos subidos
+            for file in files:
+                Material.objects.create(course=course, file=file, title=file.name)
+
             return redirect('courses:list_courses')  # Redirigir a la lista de cursos
     else:
-        form = CourseForm()
+        course_form = CourseForm()
 
-    return render(request, 'courses/upload_video.html', {'form': form})
+    return render(request, 'courses/upload_video.html', {
+        'course_form': course_form,
+    })
 
 
 def course_comment( request ):
@@ -107,15 +113,17 @@ def list_courses(request):
     })
 
 
-def course_detail( request ,course_id ):
+def course_detail(request, course_id):
     course = get_object_or_404(Course, id=course_id)
     person = get_object_or_404(Person, user=request.user)
-    
+
+    # Obtener la URL del video sin parámetros de consulta
     if course.video:
         video_url = get_url_without_query(str(course.video))
     else:
         video_url = None
-    
+
+    # Manejar la creación de comentarios
     if request.method == 'POST' and 'comment' in request.POST:
         comment_text = request.POST.get('comment')
         Comment.objects.create(
@@ -123,7 +131,8 @@ def course_detail( request ,course_id ):
             person=person,
             comment=comment_text
         )
-    
+
+    # Manejar la creación de respuestas
     if request.method == 'POST' and 'response' in request.POST:
         comment_id = request.POST.get('comment_id')
         response_text = request.POST.get('response')
@@ -133,11 +142,14 @@ def course_detail( request ,course_id ):
             person=person,
             response=response_text
         )
-    
+
+    # Obtener los comentarios y materiales relacionados
     comments = course.comments.prefetch_related('responses')
-    
-    return render( request ,'courses/course_detail.html' ,{
+    materials = course.materials.all()  # Acceder a los materiales relacionados
+
+    return render(request, 'courses/course_detail.html', {
         'course': course,
         'comments': comments,
+        'materials': materials,
         'video_url': video_url,
-        } )
+    })

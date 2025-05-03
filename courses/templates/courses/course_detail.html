@@ -2,35 +2,34 @@
 
 {% block content %}
 <div class="container mx-auto py-12">
-    <h2 class="text-3xl font-bold mb-2">{{ course.title }}</h2>
-
-    <p class="mb-6"><strong>Publicado el:</strong> {{ course.created_at|date:"d M Y" }}</p>
-    <!-- Descripción del curso -->
-    <p class="text-gray-600 mb-4">{{ course.description }}</p>
+    <h2 class="text-3xl font-bold mb-6">{{ course.title }}</h2>
 
     <!-- Reproductor de video -->
-    {% if course.video %}
+    {% if video_url %}
     <div class="mb-6">
         <video controls class="w-full rounded shadow">
             <source src="{{ video_url }}" type="video/mp4">
             Tu navegador no soporta la reproducción de videos.
         </video>
     </div>
-    {% else %}
-    <p class="text-red-500">Este curso no tiene un video asociado.</p>
     {% endif %}
 
-    <!-- Información adicional -->
-    <p><strong>Categoría:</strong> {{ course.category.name }}</p>
+    <!-- Descripción del curso -->
+    <p class="text-gray-600 mb-4">{{ course.description }}</p>
 
-    <p class="text-gray-600 mb-4">{{ course.description}}</p>
-
-    <!-- Formulario para comentarios -->
-    <form method="post" class="mb-6">
-        {% csrf_token %}
-        <textarea name="comment" placeholder="Escribe un comentario..." class="border hover:border-purple-600  focus:outline-none focus:ring-2 focus:ring-purple-500 p-2 rounded w-full"></textarea>
-        <button type="submit" class="bg-purple-600 text-white px-4 py-2 rounded mt-2 hover:bg-purple-400">Comentar</button>
-    </form>
+    <!-- Lista de materiales -->
+    <h3 class="text-2xl font-bold mb-4">Materiales del Curso</h3>
+    <ul class="list-disc pl-6">
+        {% for material in materials %}
+        <li class="mb-2">
+            <a href="{{ material.file.url }}" class="text-blue-600 hover:underline" target="_blank">
+                {{ material.title }}
+            </a>
+        </li>
+        {% empty %}
+        <p>No hay materiales disponibles para este curso.</p>
+        {% endfor %}
+    </ul>
 
     <!-- Lista de comentarios -->
     <h3 class="text-2xl font-bold mb-4">Comentarios</h3>
@@ -50,16 +49,7 @@
             </div>
             {% endfor %}
         </div>
-
-        <!-- Formulario para responder -->
-        <form method="post" class="mt-2">
-            {% csrf_token %}
-            <input type="hidden" name="comment_id" value="{{ comment.id }}">
-            <textarea name="response" placeholder="Escribe una respuesta..." class="border p-2 rounded w-full"></textarea>
-            <button type="submit" class="bg-gray-500 text-white px-4 py-2 rounded mt-2">Responder</button>
-        </form>
     </div>
     {% endfor %}
-</div>
 </div>
 {% endblock %}

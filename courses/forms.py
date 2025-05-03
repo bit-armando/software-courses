@@ -1,6 +1,6 @@
 from django.forms import ModelForm
 from django import forms
-from .models import Course, Comment, Response
+from .models import Course, Comment, Response, Material
 from software_courses.storage_backends import MediaStorage
 
 
@@ -63,3 +63,17 @@ class ResponseForm(ModelForm):
     class Meta:
         model = Response
         fields = '__all__'
+
+class MaterialForm(ModelForm):
+    class Meta:
+        model = Material
+        fields = ['title', 'file']
+        widgets = {
+            'title': forms.TextInput(attrs={
+                'class': 'w-full p-3 border rounded-lg bg-white border-purple-400 focus:outline-none focus:ring-2 focus:ring-purple-500',
+                'placeholder': 'Título del material'
+            }),
+            'file': forms.ClearableFileInput(attrs={
+                'class': 'w-full p-3 border rounded-lg bg-white border-purple-400 focus:outline-none focus:ring-2 focus:ring-purple-500',
+            }),
+        }
