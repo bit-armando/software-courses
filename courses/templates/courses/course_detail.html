@@ -1,78 +1,141 @@
-{% extends "base.html" %}
-
-{% block content %}
+{% extends "base.html" %} {% block content %}
 <div class="container mx-auto py-12">
-    <h2 class="text-3xl font-bold mb-2">{{ course.title }}</h2>
+  <h2 class="text-3xl font-bold mb-2">{{ course.title }}</h2>
 
-    <p class="mb-6"><strong>Publicado el:</strong> {{ course.created_at|date:"d M Y" }}</p>
-    <!-- Descripción del curso -->
-    <p class="text-gray-600 mb-4">{{ course.description }}</p>
+  <p class="mb-6">
+    <strong>Publicado el:</strong> {{ course.created_at|date:"d M Y" }}
+  </p>
+  <!-- Descripción del curso -->
+  <p class="text-gray-600 mb-4">{{ course.description }}</p>
 
-    <!-- Reproductor de video -->
-    {% if video_url %}
-    <div class="mb-6">
-        <video controls class="w-full rounded shadow">
-            <source src="{{ video_url }}" type="video/mp4">
-            Tu navegador no soporta la reproducción de videos.
-        </video>
-    </div>
-    {% else %}
-    <p class="text-red-500">Este curso no tiene un video asociado.</p>
-    {% endif %}
+  <!-- Reproductor de video -->
+  {% if video_url %}
+  <div class="mb-6">
+    <video controls class="w-full rounded shadow">
+      <source src="{{ video_url }}" type="video/mp4" />
+      Tu navegador no soporta la reproducción de videos.
+    </video>
+  </div>
+  {% else %}
+  <p class="text-red-500">Este curso no tiene un video asociado.</p>
+  {% endif %}
 
-    <!-- Información adicional -->
-    <p><strong>Categoría:</strong> {{ course.category.name }}</p>
+  <!-- Información adicional -->
+  <p><strong>Categoría:</strong> {{ course.category.name }}</p>
 
-    <p class="text-gray-600 mb-4">{{ course.description}}</p>
+  <p class="text-gray-600 mb-4">{{ course.description}}</p>
 
-    <!-- Lista de materiales -->
-    <h3 class="text-2xl font-bold mb-4">Materiales del Curso</h3>
-    <ul class="list-disc pl-6">
-        {% for material in materials %}
-        <li class="mb-2">
-            <a href="{{ material.file.url }}" class="text-blue-600 hover:underline" target="_blank">
-                {{ material.title }}
-            </a>
-        </li>
-        {% empty %}
-        <p>No hay materiales disponibles para este curso.</p>
-        {% endfor %}
+  <!-- Lista de materiales con menú desplegable -->
+  <h3 class="text-2xl font-bold mb-4">Materiales del Curso</h3>
+  <div class="relative">
+    <button
+      class="bg-purple-600 text-white px-4 py-2 rounded w-full text-left flex justify-between items-center hover:bg-purple-500 focus:outline-none focus:ring-2 focus:ring-purple-400"
+      onclick="toggleDropdown()"
+    >
+      Ver Materiales
+      <svg
+        class="w-5 h-5 transform transition-transform"
+        id="dropdown-icon"
+        xmlns="http://www.w3.org/2000/svg"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke="currentColor"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          d="M19 9l-7 7-7-7"
+        />
+      </svg>
+    </button>
+    <ul
+      id="dropdown-menu"
+      class="hidden absolute bg-white border rounded shadow-lg mt-2 w-full max-h-64 overflow-y-auto z-10"
+    >
+      {% for material in materials %}
+      <li class="border-b last:border-none">
+        <a
+          href="{{ material.file.url }}"
+          class="block px-4 py-2 text-gray-700 hover:bg-purple-100 hover:text-purple-600"
+          target="_blank"
+        >
+          {{ material.title }}
+        </a>
+      </li>
+      {% empty %}
+      <li class="px-4 py-2 text-gray-500">
+        No hay materiales disponibles para este curso.
+      </li>
+      {% endfor %}
     </ul>
+  </div>
 
-    <!-- Formulario para comentarios -->
-    <form method="post" class="mb-6">
-        {% csrf_token %}
-        <textarea name="comment" placeholder="Escribe un comentario..." class="border hover:border-purple-600  focus:outline-none focus:ring-2 focus:ring-purple-500 p-2 rounded w-full"></textarea>
-        <button type="submit" class="bg-purple-600 text-white px-4 py-2 rounded mt-2 hover:bg-purple-400">Comentar</button>
-    </form>
+  <script>
+    function toggleDropdown() {
+      const menu = document.getElementById("dropdown-menu");
+      const icon = document.getElementById("dropdown-icon");
+      menu.classList.toggle("hidden");
+      icon.classList.toggle("rotate-180");
+    }
+  </script>
 
-    <!-- Lista de comentarios -->
-    <h3 class="text-2xl font-bold mb-4">Comentarios</h3>
-    {% for comment in comments %}
-    <div class="mb-4 border-b pb-4">
-        <p><strong>{{ comment.person.user.username }}</strong> dijo:</p>
-        <p>{{ comment.comment }}</p>
-        <p class="text-sm text-gray-500">Publicado el {{ comment.created_at|date:"d M Y H:i" }}</p>
+  <!-- Formulario para comentarios -->
+  <form method="post" class="mb-6">
+    {% csrf_token %}
+    <textarea
+      name="comment"
+      placeholder="Escribe un comentario..."
+      class="border hover:border-purple-600 focus:outline-none focus:ring-2 focus:ring-purple-500 p-2 rounded w-full"
+    ></textarea>
+    <button
+      type="submit"
+      class="bg-purple-600 text-white px-4 py-2 rounded mt-2 hover:bg-purple-400"
+    >
+      Comentar
+    </button>
+  </form>
 
-        <!-- Respuestas -->
-        <div class="ml-4 mt-2">
-            {% for response in comment.responses.all %}
-            <div class="mb-2">
-                <p><strong>{{ response.person.user.username }}</strong> respondió:</p>
-                <p>{{ response.response }}</p>
-                <p class="text-sm text-gray-500">Publicado el {{ response.created_at|date:"d M Y H:i" }}</p>
-            </div>
-            {% endfor %}
-        </div>
-        
-        <!-- Formulario para responder -->
-        <form method="post" class="mt-2">
-            {% csrf_token %}
-            <input type="hidden" name="comment_id" value="{{ comment.id }}">
-            <textarea name="response" placeholder="Escribe una respuesta..." class="border p-2 rounded w-full"></textarea>
-            <button type="submit" class="bg-gray-500 text-white px-4 py-2 rounded mt-2">Responder</button>
-        </form>
+  <!-- Lista de comentarios -->
+  <h3 class="text-2xl font-bold mb-4">Comentarios</h3>
+  {% for comment in comments %}
+  <div class="mb-4 border-b pb-4">
+    <p><strong>{{ comment.person.user.username }}</strong> dijo:</p>
+    <p>{{ comment.comment }}</p>
+    <p class="text-sm text-gray-500">
+      Publicado el {{ comment.created_at|date:"d M Y H:i" }}
+    </p>
+
+    <!-- Respuestas -->
+    <div class="ml-4 mt-2">
+      {% for response in comment.responses.all %}
+      <div class="mb-2">
+        <p><strong>{{ response.person.user.username }}</strong> respondió:</p>
+        <p>{{ response.response }}</p>
+        <p class="text-sm text-gray-500">
+          Publicado el {{ response.created_at|date:"d M Y H:i" }}
+        </p>
+      </div>
+      {% endfor %}
     </div>
-    {% endfor %}
+
+    <!-- Formulario para responder -->
+    <form method="post" class="mt-2">
+      {% csrf_token %}
+      <input type="hidden" name="comment_id" value="{{ comment.id }}" />
+      <textarea
+        name="response"
+        placeholder="Escribe una respuesta..."
+        class="border p-2 rounded w-full"
+      ></textarea>
+      <button
+        type="submit"
+        class="bg-gray-500 text-white px-4 py-2 rounded mt-2"
+      >
+        Responder
+      </button>
+    </form>
+  </div>
+  {% endfor %}
 </div>
 {% endblock %}
