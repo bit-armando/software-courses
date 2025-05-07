@@ -14,14 +14,15 @@ class CategoryCourse(models.Model):
 
 
 class Course(models.Model):
-    title = models.CharField(verbose_name='Title',max_length=255)
+    title = models.CharField(verbose_name='Title', max_length=255)
     category = models.ForeignKey(CategoryCourse, on_delete=models.CASCADE, default=1)
     image = models.ImageField(upload_to='courses_img/', storage=MediaStorage(), blank=True, null=True)
     short_description = models.TextField(verbose_name='Short Description', blank=True, null=True)
-    description = models.TextField(verbose_name='Largue Description',blank=True, null=True)
+    description = models.TextField(verbose_name='Largue Description', blank=True, null=True)
     video = models.FileField(upload_to='videos/', storage=MediaStorage(), blank=True, null=True)
-    # person = models.ForeignKey(Person, on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)
+    average_rating = models.FloatField(default=0.0)  # Calificación promedio
+    rating_count = models.PositiveIntegerField(default=0)  # Número de valoraciones
 
     def __str__(self):
         return self.title
@@ -64,3 +65,13 @@ class CourseHistory(models.Model):
 
     def __str__(self):
         return f"{self.user.username} - {self.course.title}"
+
+
+class Rating(models.Model):
+    course = models.ForeignKey(Course, on_delete=models.CASCADE, related_name='ratings')
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    rating = models.PositiveIntegerField()  # Valoración de 1 a 5
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"{self.user.username} - {self.course.title} - {self.rating}"

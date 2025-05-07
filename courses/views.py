@@ -5,7 +5,7 @@ from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator
 from django.db.models import Q
 
-from .models import Course,Comment,Response,CategoryCourse,Material, CourseHistory
+from .models import Course,Comment,Response,CategoryCourse,Material, CourseHistory, Rating
 from authapp.models import Person
 
 from .forms import CourseForm, MaterialForm
@@ -146,6 +146,21 @@ def course_detail(request, course_id):
             person=person,
             response=response_text
         )
+    
+    # Registrar la valoración del usuario
+    if request.method == 'POST' and 'rating' in request.POST:
+        rating_value = int(request.POST.get('rating'))
+        rating, created = Rating.objects.update_or_create(
+            course=course,
+            user=request.user,
+            defaults={'rating': rating_value}
+        )
+
+        # Actualizar la calificación promedio del curso
+        ratings = course.ratings.all()
+        course.average_rating = sum(r.rating for r in ratings) / ratings.count()
+        course.rating_count = ratings.count()
+        course.save()
 
     # Obtener los comentarios y materiales relacionados
     comments = course.comments.prefetch_related('responses')
