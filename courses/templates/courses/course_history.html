@@ -3,17 +3,40 @@
 {% block content %}
 <div class="container mx-auto py-12">
     <h2 class="text-3xl font-bold mb-6">Historial de Cursos Vistos</h2>
-    <ul class="list-disc pl-6">
+
+    {% if history %}
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {% for entry in history %}
-        <li class="mb-2">
-            <a href="{% url 'courses:course_detail' entry.course.id %}" class="text-blue-600 hover:underline">
-                {{ entry.course.title }}
+        <div class="bg-white p-6 rounded hover:shadow-lg hover:scale-105 transition transform duration-200 cursor-pointer"
+             onclick="window.location.href='{% url 'courses:course_detail' entry.course.id %}'">
+            <h3 class="text-xl font-semibold mb-2">{{ entry.course.title }}</h3>
+            <p class="text-gray-600 mb-4">{{ entry.course.short_description|truncatewords:20 }}</p>
+            {% if entry.course.image %}
+            <img src="{{ entry.course.image.url }}" alt="{{ entry.course.title }}"
+                 class="w-full h-48 object-cover mb-4 rounded">
+            {% endif %}
+            <div class="flex items-center justify-between mb-4">
+                <p><strong>Categoría:</strong> {{ entry.course.category.name }}</p>
+                {% if entry.course.category.name == "Metodologías" %}
+                <span class="material-symbols-outlined text-3xl text-purple-600">flowchart</span>
+                {% elif entry.course.category.name == "Documentación" %}
+                <span class="material-symbols-outlined text-3xl text-purple-600">edit_note</span>
+                {% elif entry.course.category.name == "Programación" %}
+                <span class="material-symbols-outlined text-3xl text-purple-600">code</span>
+                {% elif entry.course.category.name == "Herramientas" %}
+                <span class="material-symbols-outlined text-3xl text-purple-600">build</span>
+                {% endif %}
+            </div>
+            <p class="text-sm text-gray-500 mb-2">Visto el {{ entry.viewed_at|date:"d M Y H:i" }}</p>
+            <a href="{% url 'courses:course_detail' entry.course.id %}"
+               class="text-purple-600 font-semibold hover:underline">
+                Ver detalles →
             </a>
-            <p class="text-sm text-gray-500">Visto el {{ entry.viewed_at|date:"d M Y H:i" }}</p>
-        </li>
-        {% empty %}
-        <p>No has visto ningún curso aún.</p>
+        </div>
         {% endfor %}
-    </ul>
+    </div>
+    {% else %}
+    <p class="text-gray-600 text-lg">Aún no has visto ningún curso.</p>
+    {% endif %}
 </div>
 {% endblock %}
