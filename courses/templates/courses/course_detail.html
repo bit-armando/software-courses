@@ -14,83 +14,6 @@
     {% endif %}
     <h2 class="text-3xl font-bold text-gray-800 mb-4">{{ course.title }}</h2>
 
-    <!-- Formulario para valorar el curso -->
-    {% if user.is_authenticated %}
-    <div class="mb-6">
-      <h3 class="text-2xl font-bold mb-4">Valora este curso</h3>
-      <form method="post" id="rating-form">
-        {% csrf_token %}
-        <div class="flex items-center space-x-2">
-          <!-- Estrellas -->
-          <div id="star-rating" class="flex space-x-1 text-yellow-400 cursor-pointer">
-            {% for i in "12345" %}
-            <svg
-              data-value="{{ i }}"
-              class="w-8 h-8 star"
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"
-              />
-            </svg>
-            {% endfor %}
-          </div>
-          <input type="hidden" name="rating" id="rating-input" />
-        </div>
-        <button
-          type="submit"
-          class="bg-purple-600 text-white px-4 py-2 rounded mt-2 hover:bg-purple-400"
-        >
-          Enviar valoración
-        </button>
-      </form>
-    </div>
-    {% else %}
-    <p class="text-gray-600">Inicia sesión para valorar este curso.</p>
-    {% endif %}
-
-    <!-- Mostrar la calificación promedio -->
-    <div class="mb-6">
-      <h3 class="text-2xl font-bold">Calificación promedio: {{ course.average_rating|floatformat:1 }} / 5</h3>
-      <p class="text-gray-600">Basado en {{ course.rating_count }} valoraciones</p>
-    </div>
-
-    <!-- Segun yo esto es mala practica pero XD -->
-    <script>
-      document.addEventListener("DOMContentLoaded", () => {
-        const stars = document.querySelectorAll("#star-rating .star");
-        const ratingInput = document.getElementById("rating-input");
-    
-        stars.forEach((star, index) => {
-          star.addEventListener("mouseover", () => {
-            stars.forEach((s, i) => {
-              s.classList.toggle("fill-yellow-400", i <= index);
-            });
-          });
-    
-          star.addEventListener("click", () => {
-            ratingInput.value = star.getAttribute("data-value");
-            stars.forEach((s, i) => {
-              s.classList.toggle("fill-yellow-400", i <= index);
-            });
-          });
-        });
-    
-        document.getElementById("rating-form").addEventListener("mouseleave", () => {
-          const rating = parseInt(ratingInput.value) || 0;
-          stars.forEach((s, i) => {
-            s.classList.toggle("fill-yellow-400", i < rating);
-          });
-        });
-      });
-    </script>
-
     <div class="flex flex-col sm:flex-row text-gray-600 text-sm mb-2 gap-4">
       <p><strong>Publicado el:</strong> {{ course.created_at|date:"d M Y" }}</p>
       <p><strong>Categoría:</strong> {{ course.category.name }}</p>
@@ -174,22 +97,55 @@
       }
     </script>
   </section>
-  <section class="col-span-1 px-4 p-4 rounded shadow-lg">
+  <section
+    class="col-span-1 px-4 p-4 rounded shadow-lg bg-gradient-to-br from-purple-900 via-purple-700 to-purple-500 text-white"
+  >
     <!-- Lista de comentarios -->
     <h3 class="text-2xl font-bold mb-4">Comentarios</h3>
     <div class="mb-4 max-h-96 overflow-y-auto">
       {% for comment in comments %}
-      <div class="border-b last:border-none py-2">
-        <p class="text-gray-800 font-semibold">
+      <div class="py-2">
+        <p class="text-white font-semibold">
           {{ comment.person.user.username }}
         </p>
-        <p class="text-gray-600">{{ comment.comment }}</p>
-        <p class="text-sm text-gray-500">
+        <p class="text-gray-50">{{ comment.comment }}</p>
+        <p class="text-sm text-gray-50">
           {{ comment.created_at|date:"d M Y H:i" }}
         </p>
+        <!-- Respuestas -->
+        <div class="ml-4 mt-2">
+          {% for response in comment.responses.all %}
+          <div class="mb-2">
+            <p>
+              <strong>{{ response.person.user.username }}</strong> respondió:
+            </p>
+            <p>{{ response.response }}</p>
+            <p class="text-sm text-gray-500">
+              Publicado el {{ response.created_at|date:"d M Y H:i" }}
+            </p>
+          </div>
+          {% endfor %}
+        </div>
+
+        <!-- Formulario para responder -->
+        <form method="post" class="mt-2">
+          {% csrf_token %}
+          <input type="hidden" name="comment_id" value="{{ comment.id }}" />
+          <textarea
+            name="response"
+            placeholder="Escribe una respuesta..."
+            class="border hover:border-purple-600 focus:outline-none focus:ring-2 focus:ring-purple-500 p-2 rounded w-full"
+          ></textarea>
+          <button
+            type="submit"
+            class="bg-purple-600 text-white px-4 py-2 rounded mt-2"
+          >
+            Responder
+          </button>
+        </form>
       </div>
       {% empty %}
-      <p class="text-gray-500">No hay comentarios aún.</p>
+      <p class="text-gray-50">No hay comentarios aún.</p>
       {% endfor %}
     </div>
     <hr class="my-4" />
@@ -209,6 +165,92 @@
         Comentar
       </button>
     </form>
+
+    <!-- Formulario para valorar el curso -->
+    {% if user.is_authenticated %}
+    <div class="mb-6 flex flex-col items-center justify-center">
+      <h3 class="text-3xl font-bold mb-4">Valora este curso</h3>
+      <form method="post" id="rating-form">
+        {% csrf_token %}
+        <div class="flex items-center space-x-2">
+          <!-- Estrellas -->
+          <div
+            id="star-rating"
+            class="flex space-x-1 text-yellow-400 cursor-pointer"
+          >
+            {% for i in "12345" %}
+            <svg
+              data-value="{{ i }}"
+              class="w-8 h-8 star"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"
+              />
+            </svg>
+            {% endfor %}
+          </div>
+          <input type="hidden" name="rating" id="rating-input" />
+        </div>
+        <button
+          type="submit"
+          class="bg-purple-600 text-white px-4 py-2 rounded mt-2 hover:bg-purple-400"
+        >
+          Enviar valoración
+        </button>
+      </form>
+    </div>
+    {% else %}
+    <p class="text-gray-600">Inicia sesión para valorar este curso.</p>
+    {% endif %}
+
+    <!-- Mostrar la calificación promedio -->
+    <div class="mb-6 flex flex-col items-center justify-center">
+      <h3 class="text-2xl font-bold">
+        Calificación promedio: {{ course.average_rating|floatformat:1 }} / 5
+      </h3>
+      <p class="text-gray-600">
+        Basado en {{ course.rating_count }} valoraciones
+      </p>
+    </div>
+
+    <!-- Segun yo esto es mala practica pero XD -->
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const stars = document.querySelectorAll("#star-rating .star");
+        const ratingInput = document.getElementById("rating-input");
+
+        stars.forEach((star, index) => {
+          star.addEventListener("mouseover", () => {
+            stars.forEach((s, i) => {
+              s.classList.toggle("fill-yellow-400", i <= index);
+            });
+          });
+
+          star.addEventListener("click", () => {
+            ratingInput.value = star.getAttribute("data-value");
+            stars.forEach((s, i) => {
+              s.classList.toggle("fill-yellow-400", i <= index);
+            });
+          });
+        });
+
+        document
+          .getElementById("rating-form")
+          .addEventListener("mouseleave", () => {
+            const rating = parseInt(ratingInput.value) || 0;
+            stars.forEach((s, i) => {
+              s.classList.toggle("fill-yellow-400", i < rating);
+            });
+          });
+      });
+    </script>
   </section>
 </main>
 {% endblock %}
