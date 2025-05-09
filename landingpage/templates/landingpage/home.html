@@ -19,10 +19,10 @@
 
     <!-- Imagen -->
     <div class="md:w-1/2">
-      <img src="https://images.unsplash.com/photo-1581092331678-5ba05d01c3fa?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
+      {% load static %}
+      <img src="{% static 'images/estudiantes.png' %}" 
            alt="Estudiantes" 
-           class="w-full h-auto rounded-lg shadow-2xl animate-fade-in-up">
-    </div>
+           class=" rounded-lg shadow-2xl">
   </div>
 </section>
 
@@ -41,62 +41,107 @@
 </section>
 
 <!-- Sección de Categorías -->
+<!-- Sección de Categorías -->
 <section id="categorias" class="py-20 bg-gray-50">
   <div class="container mx-auto px-4">
     <h2 class="text-3xl font-bold text-center mb-14">Categorías</h2>
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-      <!-- Tarjeta -->
-      <div class="bg-white p-8 rounded-lg shadow hover:shadow-xl transition group text-center">
-        <div class="text-purple-600 mb-4">
-          <span class="material-symbols-outlined text-5xl group-hover:scale-110 transition">description</span>
-        </div>
-        <h3 class="text-xl font-semibold mb-3">Documentación</h3>
-        <p class="text-gray-600 mb-5">
-          Explora recursos avanzados y guías detalladas.
-        </p>
-        <a href="#" class="text-purple-600 font-semibold hover:underline">Ver más →</a>
-      </div>
+    <div class="flex flex-col lg:flex-row gap-6">
 
-      <!-- Tarjeta -->
-      <div class="bg-white p-8 rounded-lg shadow hover:shadow-xl transition group text-center">
-        <div class="text-purple-600 mb-4">
-          <span class="material-symbols-outlined text-5xl group-hover:scale-110 transition">flowchart</span>
-        </div>
-        <h3 class="text-xl font-semibold mb-3">Metodologías</h3>
-        <p class="text-gray-600 mb-5">
-          Organiza y planifica tus proyectos de forma efectiva.
-        </p>
-        <a href="#" class="text-purple-600 font-semibold hover:underline">Ver más →</a>
-      </div>
+      <!-- Cards de Categorías (izquierda, más pequeñas) -->
+      <div class="grid grid-cols-1 gap-4 w-full lg:w-1/3">
+        <div onclick="mostrarCategoria('documentacion')" class="bg-white p-6 rounded-lg shadow hover:shadow-xl transition group text-center cursor-pointer">
+          <div class="flex justify-center items-center gap-2 mb-3">
+            <span class="material-symbols-outlined text-purple-600 text-xl">description</span>
+            <span class="px-3 py-1 rounded-full text-sm font-semibold bg-blue-100 text-blue-800">
+              Documentación
+            </span>
+          </div>
+          <p class="text-gray-600 text-sm">
+            Explora recursos avanzados y guías detalladas.
+          </p>
+        </div>        
 
-      <!-- Tarjeta -->
-      <div class="bg-white p-8 rounded-lg shadow hover:shadow-xl transition group text-center">
-        <div class="text-purple-600 mb-4">
-          <span class="material-symbols-outlined text-5xl group-hover:scale-110 transition">code</span>
-        </div>
-        <h3 class="text-xl font-semibold mb-3">Programación</h3>
-        <p class="text-gray-600 mb-5">
-          Mejora tus habilidades de desarrollo de software.
-        </p>
-        <a href="#" class="text-purple-600 font-semibold hover:underline">Ver más →</a>
-      </div>
+        <div onclick="mostrarCategoria('metodologias')" class="bg-white p-6 rounded-lg shadow hover:shadow-xl transition group text-center cursor-pointer">
+          <div class="flex justify-center items-center gap-2 mb-3">
+            <span class="material-symbols-outlined text-purple-600 text-xl">flowchart</span>
+            <span class="px-3 py-1 rounded-full text-sm font-semibold bg-purple-100 text-purple-800">
+              Metodologías
+            </span>
+          </div>
+          <p class="text-gray-600 text-sm">
+            Organiza y planifica tus proyectos de forma efectiva.
+          </p>
+        </div>        
 
-      <!-- Tarjeta -->
-      <div class="bg-white p-8 rounded-lg shadow hover:shadow-xl transition group text-center">
-        <div class="text-purple-600 mb-4">
-          <span class="material-symbols-outlined text-5xl group-hover:scale-110 transition">build</span>
+        <div onclick="mostrarCategoria('programacion')" class="bg-white p-6 rounded-lg shadow hover:shadow-xl transition group text-center cursor-pointer">
+          <div class="flex justify-center items-center gap-2 mb-3">
+            <span class="material-symbols-outlined text-purple-600 text-xl">code</span>
+            <span class="px-3 py-1 rounded-full text-sm font-semibold bg-yellow-100 text-green-800">
+              Programación
+            </span>
+          </div>
+          <p class="text-gray-600 text-sm">
+            Mejora tus habilidades de desarrollo de software.
+          </p>
+        </div>              
+
+        <div onclick="mostrarCategoria('herramientas')" class="bg-white p-6 rounded-lg shadow hover:shadow-xl transition group text-center cursor-pointer">
+          <div class="flex justify-center items-center gap-2 mb-3">
+            <span class="material-symbols-outlined text-purple-600 text-xl">build</span>
+            <span class="px-3 py-1 rounded-full text-sm font-semibold bg-pink-100 text-pink-800">
+              Herramientas
+            </span>
+          </div>
+          <p class="text-gray-600 text-sm">
+            Usa el mejor software para potenciar tu productividad.
+          </p>
         </div>
-        <h3 class="text-xl font-semibold mb-3">Herramientas</h3>
-        <p class="text-gray-600 mb-5">
-          Usa el mejor software para potenciar tu productividad.
+      </div> <!-- <- este div estaba faltando -->
+
+      <!-- Panel de Descripción (derecha, centrado) -->
+      <div class="bg-white p-8 rounded-lg shadow-lg w-full lg:w-2/3 text-center flex flex-col justify-center items-center transition" id="detalleCategoria">
+        <h3 class="text-2xl font-semibold mb-4 text-purple-700">Documentación</h3>
+        <p class="text-gray-700 mb-6 max-w-xl mx-auto">
+          Aprende a dominar el uso de documentación técnica a través de ejemplos, formatos estructurados y casos de estudio. Esta categoría te ayudará a entender cómo escribir, leer y aplicar documentación de forma profesional y eficiente.
         </p>
-        <a href="#" class="text-purple-600 font-semibold hover:underline">Ver más →</a>
+        <a href="/courses/list_courses" class="inline-block text-purple-600 font-semibold hover:underline">Ver Más →</a>
       </div>
     </div>
   </div>
+
+  <script>
+    const categorias = {
+      documentacion: {
+        titulo: "Documentación",
+        texto: "Aprende a dominar el uso de documentación técnica a través de ejemplos, formatos estructurados y casos de estudio. Esta categoría te ayudará a entender cómo escribir, leer y aplicar documentación de forma profesional y eficiente."
+      },
+      metodologias: {
+        titulo: "Metodologías",
+        texto: "Descubre metodologías ágiles, tradicionales y mixtas para gestionar proyectos. Profundiza en Scrum, Kanban, Design Thinking y más, con recursos prácticos y plantillas."
+      },
+      programacion: {
+        titulo: "Programación",
+        texto: "Domina lenguajes, frameworks y patrones de diseño con ejercicios prácticos y proyectos reales. Desde fundamentos hasta técnicas avanzadas."
+      },
+      herramientas: {
+        titulo: "Herramientas",
+        texto: "Conoce herramientas de productividad, desarrollo y colaboración. Aprende a sacarles el mayor provecho con guías paso a paso."
+      }
+    };
+
+    function mostrarCategoria(clave) {
+      const categoria = categorias[clave];
+      const detalle = document.getElementById("detalleCategoria");
+      detalle.innerHTML = `
+        <h3 class="text-2xl font-semibold mb-4 text-purple-700">${categoria.titulo}</h3>
+        <p class="text-gray-700 mb-6 max-w-xl mx-auto">${categoria.texto}</p>
+        <a href="/courses/list_courses" class="inline-block text-purple-600 font-semibold hover:underline">Ver Más →</a>
+      `;
+    }
+  </script>
 </section>
 
-<!-- Sección CTA -->
+<!-- Sección CTA → -->
 <section class="py-20 bg-gradient-to-r from-purple-700 to-indigo-700 text-white text-center">
   <div class="container mx-auto px-4">
     <h2 class="text-4xl font-bold mb-6">¿Listo para comenzar?</h2>
