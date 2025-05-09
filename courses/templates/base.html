@@ -1,15 +1,20 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="es">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="{% static 'images/logo.png' %}" type="image/png" />
     <title>Tu Sitio de Aprendizaje</title>
     <!-- Tailwind CSS via CDN -->
     <link
       href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
     <!-- Agregar en la sección <head> de base.html o course_detail.html -->
     <link href="https://vjs.zencdn.net/8.0.4/video-js.css" rel="stylesheet" />
     <script src="https://vjs.zencdn.net/8.0.4/video.min.js"></script>
@@ -33,55 +38,83 @@
             background-position: 0% 50%;
           }
         }
-      
+
         .animated-gradient {
-            background: linear-gradient(to right, #7b3aed, #5046e5);
+          background: linear-gradient(to right, #7b3aed, #5046e5);
           background-size: 400% 400%;
           animation: gradient 15s ease infinite;
         }
       </style>
-      
+
       <div
         class="w-full px-4 py-4 flex justify-between items-center animated-gradient"
       >
         <!-- Logo / Nombre -->
-        <a href="/" class="text-2xl font-bold text-white">CodeMentorEngineering</a>
+        <a
+          href="/"
+          class="flex items-center space-x-2 text-2xl font-bold text-white"
+        >
+          <!-- Logo -->
+          <img
+            src="{% static 'images/logo.png' %}"
+            alt="Logo"
+            class="h-8 w-auto rounded-lg shadow-2xl"
+          />
+          <span>CodeMentorEngineering</span>
+        </a>
 
         <!-- Menu -->
         <nav class="hidden md:flex space-x-8">
-          <a href="/" class="flex flex-col items-center text-white hover:text-purple-200" >
+          <a
+            href="/"
+            class="flex flex-col items-center text-white hover:text-purple-200"
+          >
             <span class="material-symbols-outlined text-3xl">home</span>
             <span class="text-sm">Inicio</span>
           </a>
 
-          <a href="{% url 'courses:list_courses' %}" class="flex flex-col items-center text-white hover:text-purple-200" >
+          <a
+            href="{% url 'courses:list_courses' %}"
+            class="flex flex-col items-center text-white hover:text-purple-200"
+          >
             <span class="material-symbols-outlined text-3xl">filter_list</span>
             <span class="text-sm">Categorías</span>
           </a>
 
           {% if user.is_authenticated %}
-          <a href="{% url 'courses:course_history' %}" class="flex flex-col items-center text-white hover:text-purple-200" >
+          <a
+            href="{% url 'courses:course_history' %}"
+            class="flex flex-col items-center text-white hover:text-purple-200"
+          >
             <span class="material-symbols-outlined text-3xl">history</span>
             <span class="text-sm">Historial</span>
           </a>
-          {% endif %}
-
-          {% if user.is_authenticated and user.is_superuser  %}
-          <a href="{% url 'courses:upload_video' %}" class="flex flex-col items-center text-white hover:text-purple-200" >
+          {% endif %} {% if user.is_authenticated and user.is_superuser %}
+          <a
+            href="{% url 'courses:upload_video' %}"
+            class="flex flex-col items-center text-white hover:text-purple-200"
+          >
             <span class="material-symbols-outlined text-3xl">upload_file</span>
             <span class="text-sm">Subir Curso</span>
           </a>
-          {% endif %}
-          {% if user.is_authenticated %}
-          <a href="{% url 'authapp:logout' %}" class="flex flex-col items-center text-white hover:text-purple-200" >
+          {% endif %} {% if user.is_authenticated %}
+          <a
+            href="{% url 'authapp:logout' %}"
+            class="flex flex-col items-center text-white hover:text-purple-200"
+          >
             <span class="material-symbols-outlined text-3xl"
               >account_circle</span
             >
             <span class="text-sm">Logout</span>
           </a>
           {% else %}
-          <a href="{% url 'authapp:login' %}" class="flex flex-col items-center text-white hover:text-purple-200" >
-            <span class="material-symbols-outlined text-3xl">account_circle</span>
+          <a
+            href="{% url 'authapp:login' %}"
+            class="flex flex-col items-center text-white hover:text-purple-200"
+          >
+            <span class="material-symbols-outlined text-3xl"
+              >account_circle</span
+            >
             <span class="text-sm">Login / Registro</span>
           </a>
           {% endif %}
@@ -122,31 +155,55 @@
           <h3 class="font-semibold">Enlaces Legales</h3>
           <ul class="text-black">
             <li>
-              <a href="{% url 'landingpage:terms' %}" class="hover:text-purple-600">Términos y Condiciones</a>
+              <a
+                href="{% url 'landingpage:terms' %}"
+                class="hover:text-purple-600"
+                >Términos y Condiciones</a
+              >
             </li>
             <li>
-              <a href="{% url 'landingpage:privacy' %}" class="hover:text-purple-600">Política de Privacidad</a>
+              <a
+                href="{% url 'landingpage:privacy' %}"
+                class="hover:text-purple-600"
+                >Política de Privacidad</a
+              >
             </li>
           </ul>
         </div>
 
         <!-- Redes Sociales -->
-        <div class="mb-4 md:mb-0 ">
+        <div class="mb-4 md:mb-0">
           <h3 class="font-semibold">Redes Sociales</h3>
           <ul class="flex flex-col justify-start space-y-2 text-black">
-            <a href="https://www.youtube.com/watch?v=hvL1339luv0&pp=ygUIcmlja3JvbGw%3D" target="_blank" class="hover:text-purple-600 flex items-center space-x-1">
+            <a
+              href="https://www.youtube.com/watch?v=hvL1339luv0&pp=ygUIcmlja3JvbGw%3D"
+              target="_blank"
+              class="hover:text-purple-600 flex items-center space-x-1"
+            >
               <i class="fa-brands fa-square-x-twitter"></i>
               <span>Twitter</span>
             </a>
-            <a href="https://www.youtube.com/watch?v=2GXlAJPa-KM&pp=ygUbcmlja3JvbGwgZGlmZmVyZW50IHZlcnNpb25z" target="_blank" class="hover:text-purple-600 flex items-center space-x-1">
+            <a
+              href="https://www.youtube.com/watch?v=2GXlAJPa-KM&pp=ygUbcmlja3JvbGwgZGlmZmVyZW50IHZlcnNpb25z"
+              target="_blank"
+              class="hover:text-purple-600 flex items-center space-x-1"
+            >
               <i class="fa-brands fa-square-facebook"></i>
               <span>Facebook</span>
             </a>
-            <a href="https://youtu.be/ow5XgHDkPOQ?t=175" target="_blank" class="hover:text-purple-600 flex items-center space-x-1">
+            <a
+              href="https://youtu.be/ow5XgHDkPOQ?t=175"
+              target="_blank"
+              class="hover:text-purple-600 flex items-center space-x-1"
+            >
               <i class="fa-brands fa-linkedin"></i>
               <span>LinkedIn</span>
             </a>
-            <a href="https://www.youtube.com/watch?v=xvFZjo5PgG0&pp=ygUVcmljayByb2xsIHdpdGggbm8gYWRz" target="_blank" class="hover:text-purple-600 flex items-center space-x-1">
+            <a
+              href="https://www.youtube.com/watch?v=xvFZjo5PgG0&pp=ygUVcmljayByb2xsIHdpdGggbm8gYWRz"
+              target="_blank"
+              class="hover:text-purple-600 flex items-center space-x-1"
+            >
               <i class="fa-solid fa-fan"></i>
               <span>OnlyFans</span>
             </a>
