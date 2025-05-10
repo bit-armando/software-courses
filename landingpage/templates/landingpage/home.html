@@ -1,94 +1,283 @@
-{% extends "base.html" %}
-
-{% block content %}
+{% extends "base.html" %} {% block content %}
 <!-- Hero / Sección Principal -->
-<section class="bg-gradient-to-r from-purple-600 to-indigo-600 text-white">
-  <div class="container mx-auto px-4 py-20 flex flex-col md:flex-row items-center gap-12">
-    <!-- Texto -->
+<section class="bg-gradient-to-br from-purple-700 to-indigo-600 text-white">
+  <!-- Elementos decorativos sutiles -->
+  <div class="absolute inset-0 overflow-hidden opacity-10">
+    <div
+      class="absolute top-0 left-0 w-64 h-64 rounded-full bg-purple-400 mix-blend-overlay filter blur-3xl"
+    ></div>
+  </div>
+
+  <div class="container mx-auto px-6 md:px-8 py-16 md:py-24 flex flex-col md:flex-row items-center gap-8 md:gap-12 relative">
+    <!-- Contenido de texto -->
     <div class="md:w-1/2 text-center md:text-left">
-      <h1 class="text-4xl md:text-5xl font-bold mb-6 leading-tight">
-        Logra tus metas de aprendizaje
+      <span
+        class="inline-block px-4 py-2 bg-white bg-opacity-20 backdrop-blur-sm rounded-full text-sm font-semibold mb-4 border border-white border-opacity-30"
+      >
+        👋 ¡Bienvenido, futuro profesional!
+      </span>
+
+      <h1 class="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 leading-tight">
+        Domina tus <span class="text-yellow-300">primeros semestres</span> con
+        confianza
       </h1>
-      <p class="text-lg md:text-xl mb-8">
-        Descubre las mejores metodologías, programas y herramientas para crecer profesionalmente.
+
+      <p
+        class="text-lg mb-6 max-w-lg mx-auto md:mx-0 opacity-90 leading-relaxed"
+      >
+        Herramientas, metodologías y recursos creados
+        <strong>por estudiantes para estudiantes</strong>. Simplificamos el
+        aprendizaje en tus primeros pasos universitarios.
       </p>
-      <a href="#categorias" class="inline-block bg-white text-purple-600 px-8 py-4 rounded-lg font-bold hover:bg-gray-100 transition transform hover:scale-105">
-        Explorar Categorías
-      </a>
+
+      <div
+        class="flex flex-col sm:flex-row gap-3 justify-center md:justify-start"
+      >
+        <a
+          href="#categorias"
+          class="inline-flex items-center justify-center bg-white text-purple-700 px-6 py-3 rounded-lg font-bold hover:bg-gray-100 transition transform hover:scale-105 shadow-md"
+        >
+          Explorar recursos
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="h-5 w-5 ml-2"
+            viewBox="0 0 20 20"
+            fill="currentColor"
+          >
+            <path
+              fill-rule="evenodd"
+              d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z"
+              clip-rule="evenodd"
+            />
+          </svg>
+        </a>
+
+        <a
+          href="#como-funciona"
+          class="inline-flex items-center justify-center bg-transparent border-2 border-white text-white px-6 py-3 rounded-lg font-bold hover:bg-white hover:bg-opacity-10 transition"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="h-5 w-5 mr-2"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"
+            />
+          </svg>
+          ¿Cómo funciona?
+        </a>
+      </div>
+
+      <!-- Testimonios de estudiantes -->
+      <div
+        class="mt-8 bg-white bg-opacity-10 backdrop-blur-sm p-4 rounded-xl border border-white border-opacity-20 max-w-md mx-auto md:mx-0"
+      >
+        <p class="text-sm italic mb-2">
+          "Aqui podriamos agregar reseñas o no se la neta"
+        </p>
+        <div class="flex items-center justify-center md:justify-start gap-2">
+          <div class="flex items-center">
+            <span class="text-yellow-400">★★★★★</span>
+            <span class="ml-1 text-sm">- Nuestro buen compa Oscar</span>
+          </div>
+        </div>
+      </div>
     </div>
 
-    <!-- Imagen -->
-    <div class="md:w-1/2">
+    <!-- Imagen - Manteniendo tu imagen stock pero con mejoras -->
+    <div class="md:w-1/2 mt-8 md:mt-0">
       {% load static %}
-      <img src="{% static 'images/estudiantes.png' %}" 
-           alt="Estudiantes" 
-           class=" rounded-lg shadow-2xl">
-  </div>
-</section>
+      <div class="relative">
+        <img
+          src="{% static 'images/estudiantes.png' %}"
+          alt="Estudiantes universitarios colaborando en sus proyectos"
+          class="rounded-xl shadow-2xl border-4 border-white border-opacity-20 w-full max-w-lg mx-auto"
+        />
 
-<!-- Sección de Instituciones -->
-<section class="py-16 bg-white">
-  <div class="container mx-auto px-4">
-    <h2 class="text-3xl md:text-4xl font-bold text-center mb-12">Aprende de las mejores instituciones</h2>
-    <div class="flex flex-wrap justify-center gap-8 items-center">
-      <!-- Logos -->
-      <img src="https://upload.wikimedia.org/wikipedia/commons/a/a3/Logo-Round.png" alt="Logo1" class="h-12 grayscale hover:grayscale-0 transition">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/4/4e/MIT_Seal.svg" alt="Logo2" class="h-12 grayscale hover:grayscale-0 transition">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/b/b6/Image_created_with_a_mobile_phone.png" alt="Logo3" class="h-12 grayscale hover:grayscale-0 transition">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/3/3f/Logo_BBC_World_News_%282019%29.svg" alt="Logo4" class="h-12 grayscale hover:grayscale-0 transition">
+        <!-- Badge decorativo -->
+        <div
+          class="absolute -bottom-4 -right-4 bg-yellow-400 text-gray-900 px-3 py-2 rounded-lg shadow-md transform rotate-3"
+        >
+          <div class="flex items-center text-sm font-bold">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="h-4 w-4 mr-1"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+              />
+            </svg>
+            Validado por profesores
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- Sección de Categorías -->
+<section id="beneficios" class="py-20 bg-white">
+  <div class="container mx-auto px-4">
+    <div class="text-center mb-16">
+      <h2 class="text-3xl font-bold mb-4">Por qué elegirnos</h2>
+      <p class="text-gray-600 max-w-2xl mx-auto">
+        Ofrecemos una experiencia de aprendizaje única diseñada para
+        profesionales ocupados.
+      </p>
+    </div>
+
+    <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+      <div class="bg-gray-50 p-6 rounded-xl text-center">
+        <div
+          class="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-4"
+        >
+          <span class="material-symbols-outlined text-purple-600 text-3xl"
+            >rocket_launch</span
+          >
+        </div>
+        <h3 class="font-bold text-xl mb-2">Aprendizaje acelerado</h3>
+        <p class="text-gray-600">
+          Métodos que reducen el tiempo de aprendizaje en un 40%
+        </p>
+      </div>
+
+      <div class="bg-gray-50 p-6 rounded-xl text-center">
+        <div
+          class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4"
+        >
+          <span class="material-symbols-outlined text-blue-600 text-3xl"
+            >workspace_premium</span
+          >
+        </div>
+        <h3 class="font-bold text-xl mb-2">Certificaciones</h3>
+        <p class="text-gray-600">
+          Obtén certificados reconocidos por la industria
+        </p>
+      </div>
+
+      <div class="bg-gray-50 p-6 rounded-xl text-center">
+        <div
+          class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4"
+        >
+          <span class="material-symbols-outlined text-green-600 text-3xl"
+            >support_agent</span
+          >
+        </div>
+        <h3 class="font-bold text-xl mb-2">Soporte 24/7</h3>
+        <p class="text-gray-600">
+          Nuestros mentores están disponibles para ayudarte
+        </p>
+      </div>
+
+      <div class="bg-gray-50 p-6 rounded-xl text-center">
+        <div
+          class="w-16 h-16 bg-orange-100 rounded-full flex items-center justify-center mx-auto mb-4"
+        >
+          <span class="material-symbols-outlined text-orange-600 text-3xl"
+            >update</span
+          >
+        </div>
+        <h3 class="font-bold text-xl mb-2">Contenido actualizado</h3>
+        <p class="text-gray-600">
+          Mantenemos nuestros recursos al día con las últimas tendencias
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- Sección de Categorías -->
 <section id="categorias" class="py-20 bg-gray-50">
   <div class="container mx-auto px-4">
-    <h2 class="text-3xl font-bold text-center mb-14">Categorías</h2>
+    <div class="text-center mb-16">
+      <h2 class="text-3xl font-bold mb-4">Categorías</h2>
+      <p class="text-center text-gray-600 mb-8">
+        Selecciona una categoría para descubrir recursos específicos para tus
+        objetivos de aprendizaje.
+      </p>
+    </div>
     <div class="flex flex-col lg:flex-row gap-6">
-
-      <!-- Cards de Categorías (izquierda, más pequeñas) -->
+      <!-- Cards de Categorías (izquierda) -->
       <div class="grid grid-cols-1 gap-4 w-full lg:w-1/3">
-        <div onclick="mostrarCategoria('documentacion')" class="bg-white p-6 rounded-lg shadow hover:shadow-xl transition group text-center cursor-pointer">
+        <div
+          onclick="mostrarCategoria('documentacion')"
+          class="bg-white p-6 rounded-lg shadow hover:shadow-xl transition group text-center cursor-pointer"
+        >
           <div class="flex justify-center items-center gap-2 mb-3">
-            <span class="material-symbols-outlined text-purple-600 text-xl">description</span>
-            <span class="px-3 py-1 rounded-full text-sm font-semibold bg-blue-100 text-blue-800">
+            <span class="material-symbols-outlined text-purple-600 text-xl"
+              >description</span
+            >
+            <span
+              class="px-3 py-1 rounded-full text-sm font-semibold bg-blue-100 text-blue-800"
+            >
               Documentación
             </span>
           </div>
           <p class="text-gray-600 text-sm">
             Explora recursos avanzados y guías detalladas.
           </p>
-        </div>        
+        </div>
 
-        <div onclick="mostrarCategoria('metodologias')" class="bg-white p-6 rounded-lg shadow hover:shadow-xl transition group text-center cursor-pointer">
+        <div
+          onclick="mostrarCategoria('metodologias')"
+          class="bg-white p-6 rounded-lg shadow hover:shadow-xl transition group text-center cursor-pointer"
+        >
           <div class="flex justify-center items-center gap-2 mb-3">
-            <span class="material-symbols-outlined text-purple-600 text-xl">flowchart</span>
-            <span class="px-3 py-1 rounded-full text-sm font-semibold bg-purple-100 text-purple-800">
+            <span class="material-symbols-outlined text-purple-600 text-xl"
+              >flowchart</span
+            >
+            <span
+              class="px-3 py-1 rounded-full text-sm font-semibold bg-purple-100 text-purple-800"
+            >
               Metodologías
             </span>
           </div>
           <p class="text-gray-600 text-sm">
             Organiza y planifica tus proyectos de forma efectiva.
           </p>
-        </div>        
+        </div>
 
-        <div onclick="mostrarCategoria('programacion')" class="bg-white p-6 rounded-lg shadow hover:shadow-xl transition group text-center cursor-pointer">
+        <div
+          onclick="mostrarCategoria('programacion')"
+          class="bg-white p-6 rounded-lg shadow hover:shadow-xl transition group text-center cursor-pointer"
+        >
           <div class="flex justify-center items-center gap-2 mb-3">
-            <span class="material-symbols-outlined text-purple-600 text-xl">code</span>
-            <span class="px-3 py-1 rounded-full text-sm font-semibold bg-yellow-100 text-green-800">
+            <span class="material-symbols-outlined text-purple-600 text-xl"
+              >code</span
+            >
+            <span
+              class="px-3 py-1 rounded-full text-sm font-semibold bg-yellow-100 text-green-800"
+            >
               Programación
             </span>
           </div>
           <p class="text-gray-600 text-sm">
             Mejora tus habilidades de desarrollo de software.
           </p>
-        </div>              
+        </div>
 
-        <div onclick="mostrarCategoria('herramientas')" class="bg-white p-6 rounded-lg shadow hover:shadow-xl transition group text-center cursor-pointer">
+        <div
+          onclick="mostrarCategoria('herramientas')"
+          class="bg-white p-6 rounded-lg shadow hover:shadow-xl transition group text-center cursor-pointer"
+        >
           <div class="flex justify-center items-center gap-2 mb-3">
-            <span class="material-symbols-outlined text-purple-600 text-xl">build</span>
-            <span class="px-3 py-1 rounded-full text-sm font-semibold bg-pink-100 text-pink-800">
+            <span class="material-symbols-outlined text-purple-600 text-xl"
+              >build</span
+            >
+            <span
+              class="px-3 py-1 rounded-full text-sm font-semibold bg-pink-100 text-pink-800"
+            >
               Herramientas
             </span>
           </div>
@@ -96,15 +285,27 @@
             Usa el mejor software para potenciar tu productividad.
           </p>
         </div>
-      </div> <!-- <- este div estaba faltando -->
+      </div>
 
-      <!-- Panel de Descripción (derecha, centrado) -->
-      <div class="bg-white p-8 rounded-lg shadow-lg w-full lg:w-2/3 text-center flex flex-col justify-center items-center transition" id="detalleCategoria">
-        <h3 class="text-2xl font-semibold mb-4 text-purple-700">Documentación</h3>
+      <!-- Panel de Descripción (derecha) -->
+      <div
+        class="bg-white p-8 rounded-lg shadow-lg w-full lg:w-2/3 text-center flex flex-col justify-center items-center transition"
+        id="detalleCategoria"
+      >
+        <h3 class="text-2xl font-semibold mb-4 text-purple-700">
+          Documentación
+        </h3>
         <p class="text-gray-700 mb-6 max-w-xl mx-auto">
-          Aprende a dominar el uso de documentación técnica a través de ejemplos, formatos estructurados y casos de estudio. Esta categoría te ayudará a entender cómo escribir, leer y aplicar documentación de forma profesional y eficiente.
+          Aprende a dominar el uso de documentación técnica a través de
+          ejemplos, formatos estructurados y casos de estudio. Esta categoría te
+          ayudará a entender cómo escribir, leer y aplicar documentación de
+          forma profesional y eficiente.
         </p>
-        <a href="/courses/list_courses" class="inline-block text-purple-600 font-semibold hover:underline">Ver Más →</a>
+        <a
+          href="/courses/list_courses"
+          class="inline-block text-purple-600 font-semibold hover:underline"
+          >Ver Más →</a
+        >
       </div>
     </div>
   </div>
@@ -113,20 +314,24 @@
     const categorias = {
       documentacion: {
         titulo: "Documentación",
-        texto: "Aprende a dominar el uso de documentación técnica a través de ejemplos, formatos estructurados y casos de estudio. Esta categoría te ayudará a entender cómo escribir, leer y aplicar documentación de forma profesional y eficiente."
+        texto:
+          "Aprende a dominar el uso de documentación técnica a través de ejemplos, formatos estructurados y casos de estudio. Esta categoría te ayudará a entender cómo escribir, leer y aplicar documentación de forma profesional y eficiente.",
       },
       metodologias: {
         titulo: "Metodologías",
-        texto: "Descubre metodologías ágiles, tradicionales y mixtas para gestionar proyectos. Profundiza en Scrum, Kanban, Design Thinking y más, con recursos prácticos y plantillas."
+        texto:
+          "Descubre metodologías ágiles, tradicionales y mixtas para gestionar proyectos. Profundiza en Scrum, Kanban, Design Thinking y más, con recursos prácticos y plantillas.",
       },
       programacion: {
         titulo: "Programación",
-        texto: "Domina lenguajes, frameworks y patrones de diseño con ejercicios prácticos y proyectos reales. Desde fundamentos hasta técnicas avanzadas."
+        texto:
+          "Domina lenguajes, frameworks y patrones de diseño con ejercicios prácticos y proyectos reales. Desde fundamentos hasta técnicas avanzadas.",
       },
       herramientas: {
         titulo: "Herramientas",
-        texto: "Conoce herramientas de productividad, desarrollo y colaboración. Aprende a sacarles el mayor provecho con guías paso a paso."
-      }
+        texto:
+          "Conoce herramientas de productividad, desarrollo y colaboración. Aprende a sacarles el mayor provecho con guías paso a paso.",
+      },
     };
 
     function mostrarCategoria(clave) {
@@ -142,12 +347,43 @@
 </section>
 
 <!-- Sección CTA → -->
-<section class="py-20 bg-gradient-to-r from-purple-700 to-indigo-700 text-white text-center">
-  <div class="container mx-auto px-4">
-    <h2 class="text-4xl font-bold mb-6">¿Listo para comenzar?</h2>
-    <p class="text-lg mb-8">Crea una cuenta gratuita y desbloquea todo nuestro contenido premium.</p>
-    <a href="/auth/register" class="inline-block bg-white text-purple-700 px-8 py-4 rounded-lg font-bold hover:bg-gray-100 transition transform hover:scale-105">
-      Crear Cuenta Gratis
+<section
+  class="py-20 bg-gradient-to-br from-purple-700 to-indigo-800 text-white text-center relative overflow-hidden"
+>
+  <!-- Elementos decorativos -->
+  <div class="absolute top-0 left-0 w-full h-full opacity-10">
+    <div class="absolute top-20 left-20 w-40 h-40 rounded-full bg-white"></div>
+    <div
+      class="absolute bottom-10 right-10 w-60 h-60 rounded-full bg-white"
+    ></div>
+  </div>
+
+  <div class="container mx-auto px-4 relative z-10">
+    <span
+      class="inline-block px-3 py-1 rounded-full text-sm font-semibold bg-white bg-opacity-20 mb-4"
+    >
+      ¡Oferta especial!
+    </span>
+    <h2 class="text-4xl font-bold mb-6">
+      Comienza hoy y obtén acceso ilimitado
+    </h2>
+    <p class="text-lg mb-8 max-w-2xl mx-auto">
+      Únete a nuestra comunidad de profesionales y accede a todos los recursos
+      por menos de lo que cuesta un café al día.
+    </p>
+
+    <!-- Testimonio -->
+    <div
+      class="max-w-lg mx-auto bg-white bg-opacity-10 p-6 rounded-xl mb-8 backdrop-blur-sm"
+    >
+      <p class="italic mb-3">Aqui no se me ocurre que poner todavia xd</p>
+    </div>
+
+    <a
+      href="/auth/register"
+      class="inline-block bg-white text-purple-700 px-8 py-4 rounded-lg font-bold hover:bg-gray-100 transition transform hover:scale-105 shadow-lg mx-2"
+    >
+      Crea tú Cuenta Gratis
     </a>
   </div>
 </section>
