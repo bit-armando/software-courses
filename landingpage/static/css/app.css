@@ -1,0 +1,68 @@
+/* ==================== */
+/* ANIMACIONES Y EFECTOS */
+/* ==================== */
+@keyframes gradient {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* ============= */
+/* COMPONENTES */
+/* ============= */
+
+/* Gradiente animado */
+.animated-gradient {
+  background: linear-gradient(to right, #7b3aed, #5046e5, #7b3aed);
+  background-size: 200% 200%;
+  animation: gradient 10s ease infinite;
+}
+
+/* Enlaces de navegación */
+.nav-link {
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.nav-link:hover span.text-sm {
+  color: #e9d5ff;
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 2px;
+  background: #e9d5ff;
+  transition: width 0.3s ease;
+}
+
+.nav-link:hover::after {
+  width: 60%;
+}
+
+/* Menú móvil */
+#mobile-menu {
+  transition: all 0.3s ease;
+}
+
+/* ============= */
+/* ELEMENTOS GENERALES */
+/* ============= */
+
+/* Logo */
+.logo-hover-effect {
+  transition: transform 0.3s ease;
+}
+
+.logo-hover-effect:hover {
+  transform: scale(1.05);
+}
+
+/* Footer */
+footer a {
+  transition: color 0.2s ease;
+}

@@ -11,6 +11,7 @@
       href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
       rel="stylesheet"
     />
+    <link href="{% static 'css/app.css' %}" rel="stylesheet" />
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
@@ -25,123 +26,141 @@
   </head>
   <body class="bg-gray-50 text-gray-800">
     <!-- Header / Navbar -->
-    <header class="bg-white shadow">
-      <style>
-        @keyframes gradient {
-          0% {
-            background-position: 0% 50%;
-          }
-          50% {
-            background-position: 100% 50%;
-          }
-          100% {
-            background-position: 0% 50%;
-          }
-        }
+<header class="bg-white shadow sticky top-0 z-50">
+  <!-- Estilos movidos a app.css -->
+  <div class="w-full px-6 py-3 flex justify-between items-center animated-gradient">
+    <!-- Logo / Nombre - Mejorado con efecto hover -->
+    <a href="/" class="flex items-center space-x-3 group">
+      <img
+        src="{% static 'images/logo.png' %}"
+        alt="Logo"
+        class="h-10 w-auto rounded-lg shadow-lg transition duration-300 group-hover:scale-105"
+      />
+      <span class="text-2xl font-bold text-white">CodeMentorEngineering</span>
+    </a>
 
-        .animated-gradient {
-          background: linear-gradient(to right, #7b3aed, #5046e5);
-          background-size: 400% 400%;
-          animation: gradient 15s ease infinite;
-        }
-      </style>
-
-      <div
-        class="w-full px-4 py-4 flex justify-between items-center animated-gradient"
+    <!-- Menu Desktop - Misma lógica pero mejor diseño -->
+    <nav class="hidden md:flex items-center space-x-6">
+      <a
+        href="/"
+        class="nav-link flex flex-col items-center text-white"
       >
-        <!-- Logo / Nombre -->
-        <a
-          href="/"
-          class="flex items-center space-x-2 text-2xl font-bold text-white"
-        >
-          <!-- Logo -->
-          <img
-            src="{% static 'images/logo.png' %}"
-            alt="Logo"
-            class="h-8 w-auto rounded-lg shadow-2xl"
-          />
-          <span>CodeMentorEngineering</span>
-        </a>
+        <span class="material-symbols-outlined text-2xl">home</span>
+        <span class="text-sm mt-1">Inicio</span>
+      </a>
 
-        <!-- Menu -->
-        <nav class="hidden md:flex space-x-8">
-          <a
-            href="/"
-            class="flex flex-col items-center text-white hover:text-purple-200"
-          >
-            <span class="material-symbols-outlined text-3xl">home</span>
-            <span class="text-sm">Inicio</span>
-          </a>
+      <a
+        href="{% url 'courses:list_courses' %}"
+        class="nav-link flex flex-col items-center text-white"
+      >
+        <span class="material-symbols-outlined text-2xl">school</span>
+        <span class="text-sm mt-1">Cursos</span>
+      </a>
 
-          <a
-            href="{% url 'courses:list_courses' %}"
-            class="flex flex-col items-center text-white hover:text-purple-200"
-          >
-            <span class="material-symbols-outlined text-3xl">filter_list</span>
-            <span class="text-sm">Cursos</span>
-          </a>
+      {% if user.is_authenticated %}
+      <a
+        href="{% url 'courses:course_history' %}"
+        class="nav-link flex flex-col items-center text-white"
+      >
+        <span class="material-symbols-outlined text-2xl">history</span>
+        <span class="text-sm mt-1">Historial</span>
+      </a>
+      {% endif %}
 
-          {% if user.is_authenticated %}
-          <a
-            href="{% url 'courses:course_history' %}"
-            class="flex flex-col items-center text-white hover:text-purple-200"
-          >
-            <span class="material-symbols-outlined text-3xl">history</span>
-            <span class="text-sm">Historial</span>
-          </a>
-          {% endif %} {% if user.is_authenticated and user.is_superuser %}
-          <a
-            href="{% url 'courses:upload_video' %}"
-            class="flex flex-col items-center text-white hover:text-purple-200"
-          >
-            <span class="material-symbols-outlined text-3xl">upload_file</span>
-            <span class="text-sm">Subir Curso</span>
-          </a>
-          {% endif %} {% if user.is_authenticated %}
-          <a
-            href="{% url 'authapp:logout' %}"
-            class="flex flex-col items-center text-white hover:text-purple-200"
-          >
-            <span class="material-symbols-outlined text-3xl"
-              >account_circle</span
-            >
-            <span class="text-sm">Logout</span>
-          </a>
-          {% else %}
-          <a
-            href="{% url 'authapp:login' %}"
-            class="flex flex-col items-center text-white hover:text-purple-200"
-          >
-            <span class="material-symbols-outlined text-3xl"
-              >account_circle</span
-            >
-            <span class="text-sm">Login / Registro</span>
-          </a>
-          {% endif %}
-        </nav>
+      {% if user.is_authenticated and user.is_superuser %}
+      <a
+        href="{% url 'courses:upload_video' %}"
+        class="nav-link flex flex-col items-center text-white"
+      >
+        <span class="material-symbols-outlined text-2xl">upload</span>
+        <span class="text-sm mt-1">Subir</span>
+      </a>
+      {% endif %}
 
-        <!-- Botón para mobile -->
-        <button
-          class="md:hidden px-2 py-1 text-white focus:outline-none focus:ring-2 focus:ring-purple-200"
-        >
-          <!-- Ícono de menú (hamburguesa) -->
-          <svg
-            class="w-6 h-6"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="M4 6h16M4 12h16M4 18h16"
-            ></path>
-          </svg>
-        </button>
-      </div>
-    </header>
+      {% if user.is_authenticated %}
+      <a
+        href="{% url 'authapp:logout' %}"
+        class="nav-link flex flex-col items-center text-white"
+      >
+        <span class="material-symbols-outlined text-2xl">logout</span>
+        <span class="text-sm mt-1">Salir</span>
+      </a>
+      {% else %}
+      <a
+        href="{% url 'authapp:login' %}"
+        class="nav-link flex flex-col items-center text-white"
+      >
+        <span class="material-symbols-outlined text-2xl">login</span>
+        <span class="text-sm mt-1">Ingresar</span>
+      </a>
+      {% endif %}
+    </nav>
+
+    <!-- Botón para mobile - Mejorado -->
+    <button
+      id="mobile-menu-button"
+      class="md:hidden text-white focus:outline-none"
+    >
+      <svg
+        class="w-8 h-8"
+        fill="none"
+        stroke="currentColor"
+        viewBox="0 0 24 24"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          d="M4 6h16M4 12h16M4 18h16"
+        ></path>
+      </svg>
+    </button>
+  </div>
+
+  <!-- Menú Mobile - Misma lógica pero mejor diseño -->
+  <div id="mobile-menu" class="md:hidden hidden bg-indigo-700 px-4 py-2">
+    <a href="/" class="block py-2 text-white hover:bg-indigo-600 rounded px-2">
+      <span class="material-symbols-outlined align-middle">home</span>
+      <span class="ml-2">Inicio</span>
+    </a>
+    <a href="{% url 'courses:list_courses' %}" class="block py-2 text-white hover:bg-indigo-600 rounded px-2">
+      <span class="material-symbols-outlined align-middle">school</span>
+      <span class="ml-2">Cursos</span>
+    </a>
+    {% if user.is_authenticated %}
+    <a href="{% url 'courses:course_history' %}" class="block py-2 text-white hover:bg-indigo-600 rounded px-2">
+      <span class="material-symbols-outlined align-middle">history</span>
+      <span class="ml-2">Historial</span>
+    </a>
+    {% endif %}
+    {% if user.is_authenticated and user.is_superuser %}
+    <a href="{% url 'courses:upload_video' %}" class="block py-2 text-white hover:bg-indigo-600 rounded px-2">
+      <span class="material-symbols-outlined align-middle">upload</span>
+      <span class="ml-2">Subir Curso</span>
+    </a>
+    {% endif %}
+    {% if user.is_authenticated %}
+    <a href="{% url 'authapp:logout' %}" class="block py-2 text-white hover:bg-indigo-600 rounded px-2">
+      <span class="material-symbols-outlined align-middle">logout</span>
+      <span class="ml-2">Cerrar Sesión</span>
+    </a>
+    {% else %}
+    <a href="{% url 'authapp:login' %}" class="block py-2 text-white hover:bg-indigo-600 rounded px-2">
+      <span class="material-symbols-outlined align-middle">login</span>
+      <span class="ml-2">Iniciar Sesión</span>
+    </a>
+    {% endif %}
+  </div>
+</header>
+
+<script>
+  // Mobile menu toggle - Funcionalidad básica igual
+  document.getElementById('mobile-menu-button').addEventListener('click', function() {
+    const menu = document.getElementById('mobile-menu');
+    menu.classList.toggle('hidden');
+  });
+</script>
 
     {% block content %} {% endblock %}
 
