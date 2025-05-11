@@ -165,76 +165,86 @@
     {% block content %} {% endblock %}
 
     <!-- Footer -->
-    <footer class="bg-white border-t py-6 mt-12">
-      <div
-        class="container mx-auto px-4 flex flex-col md:flex-row justify-between items-start"
-      >
-        <!-- Información Legal -->
-        <div class="mb-4 md:mb-0">
-          <h3 class="font-semibold">Enlaces Legales</h3>
-          <ul class="text-black">
-            <li>
-              <a
-                href="{% url 'landingpage:terms' %}"
-                class="hover:text-purple-600"
-                >Términos y Condiciones</a
-              >
-            </li>
-            <li>
-              <a
-                href="{% url 'landingpage:privacy' %}"
-                class="hover:text-purple-600"
-                >Política de Privacidad</a
-              >
-            </li>
-          </ul>
-        </div>
+    <footer class="bg-gradient-to-r from-purple-700 to-indigo-700 text-white py-12 mt-16">
+  <div class="container mx-auto px-6">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      <!-- Información Legal -->
+      <div class="mb-8 md:mb-0">
+        <h3 class="text-xl font-bold mb-4 flex items-center">
+          <span class="material-symbols-outlined mr-2">gavel</span>
+          Enlaces Legales
+        </h3>
+        <ul class="space-y-3">
+          <li>
+            <a href="{% url 'landingpage:terms' %}" class="hover:text-purple-200 transition flex items-center">
+              <span class="material-symbols-outlined text-sm mr-2">description</span>
+              Términos y Condiciones
+            </a>
+          </li>
+          <li>
+            <a href="{% url 'landingpage:privacy' %}" class="hover:text-purple-200 transition flex items-center">
+              <span class="material-symbols-outlined text-sm mr-2">privacy_tip</span>
+              Política de Privacidad
+            </a>
+          </li>
+        </ul>
+      </div>
 
-        <!-- Redes Sociales -->
-        <div class="mb-4 md:mb-0">
-          <h3 class="font-semibold">Redes Sociales</h3>
-          <ul class="flex flex-col justify-start space-y-2 text-black">
-            <a
-              href="https://www.youtube.com/watch?v=hvL1339luv0&pp=ygUIcmlja3JvbGw%3D"
-              target="_blank"
-              class="hover:text-purple-600 flex items-center space-x-1"
-            >
-              <i class="fa-brands fa-square-x-twitter"></i>
-              <span>Twitter</span>
-            </a>
-            <a
-              href="https://www.youtube.com/watch?v=2GXlAJPa-KM&pp=ygUbcmlja3JvbGwgZGlmZmVyZW50IHZlcnNpb25z"
-              target="_blank"
-              class="hover:text-purple-600 flex items-center space-x-1"
-            >
-              <i class="fa-brands fa-square-facebook"></i>
-              <span>Facebook</span>
-            </a>
-            <a
-              href="https://youtu.be/ow5XgHDkPOQ?t=175"
-              target="_blank"
-              class="hover:text-purple-600 flex items-center space-x-1"
-            >
-              <i class="fa-brands fa-linkedin"></i>
-              <span>LinkedIn</span>
-            </a>
-            <a
-              href="https://www.youtube.com/watch?v=xvFZjo5PgG0&pp=ygUVcmljayByb2xsIHdpdGggbm8gYWRz"
-              target="_blank"
-              class="hover:text-purple-600 flex items-center space-x-1"
-            >
-              <i class="fa-solid fa-fan"></i>
-              <span>OnlyFans</span>
-            </a>
-          </ul>
-        </div>
-
-        <!-- Información Adicional -->
-        <div>
-          <h3 class="font-semibold">Información Adicional</h3>
-          <p class="text-black">Contacto: info@tusitioaprendizaje.com</p>
+      <!-- Redes Sociales -->
+      <div class="mb-8 md:mb-0">
+        <h3 class="text-xl font-bold mb-4 flex items-center">
+          <span class="material-symbols-outlined mr-2">share</span>
+          Síguenos
+        </h3>
+        <div class="grid grid-cols-2 gap-4">
+          <a href="https://www.youtube.com/watch?v=2GXlAJPa-KM&pp=ygUbcmlja3JvbGwgZGlmZmVyZW50IHZlcnNpb25z" target="_blank" class="social-link bg-white bg-opacity-10 hover:bg-opacity-20 rounded-lg p-3 transition flex items-center">
+            <i class="fab fa-twitter text-lg mr-2"></i>
+            <span>Twitter</span>
+          </a>
+          <a href="https://youtu.be/ow5XgHDkPOQ?t=175" target="_blank" class="social-link bg-white bg-opacity-10 hover:bg-opacity-20 rounded-lg p-3 transition flex items-center">
+            <i class="fab fa-facebook text-lg mr-2"></i>
+            <span>Facebook</span>
+          </a>
+          <a href="https://www.youtube.com/watch?v=hvL1339luv0&pp=ygUIcmlja3JvbGw%3D" target="_blank" class="social-link bg-white bg-opacity-10 hover:bg-opacity-20 rounded-lg p-3 transition flex items-center">
+            <i class="fab fa-linkedin text-lg mr-2"></i>
+            <span>LinkedIn</span>
+          </a>
+          <a href="https://www.youtube.com/watch?v=xvFZjo5PgG0&pp=ygUVcmljayByb2xsIHdpdGggbm8gYWRz" target="_blank" class="social-link bg-white bg-opacity-10 hover:bg-opacity-20 rounded-lg p-3 transition flex items-center">
+            <i class="fab fa-youtube text-lg mr-2"></i>
+            <span>YouTube</span>
+          </a>
         </div>
       </div>
-    </footer>
+
+      <!-- Información de Contacto -->
+      <div>
+        <h3 class="text-xl font-bold mb-4 flex items-center">
+          <span class="material-symbols-outlined mr-2">contact_support</span>
+          Contacto
+        </h3>
+        <div class="space-y-4">
+          <p class="flex items-center">
+            <span class="material-symbols-outlined mr-2">mail</span>
+            contacto@codementor.edu
+          </p>
+          <p class="flex items-center">
+            <span class="material-symbols-outlined mr-2">school</span>
+            Proyecto Universitario
+          </p>
+          <p class="flex items-center">
+            <span class="material-symbols-outlined mr-2">group</span>
+            Equipo de 4 estudiantes
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Derechos de autor y créditos -->
+    <div class="border-t border-white border-opacity-20 mt-12 pt-8 text-center text-sm text-white text-opacity-70">
+      <p>© 2025 CodeMentor Engineering. Todos los derechos reservados.</p>
+      <p class="mt-2">Hecho por estudiantes para estudiantes</p>
+    </div>
+  </div>
+</footer>
   </body>
 </html>
