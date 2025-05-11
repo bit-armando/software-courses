@@ -1,141 +1,199 @@
-{% extends "base.html" %} {% block content %}
-<style>
-  @keyframes fadeInUp {
-    from {
-      opacity: 0;
-      transform: translateY(20px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-  .animate-fadeInUp {
-    animation: fadeInUp 0.8s ease-out;
-  }
-</style>
+{% extends "base.html" %}
 
-<div
-  class="max-w-4xl mx-auto p-8 bg-gray-50 shadow-lg rounded-2xl mt-10 animate-fadeInUp text-justify"
->
-  <h1 class="text-4xl font-bold text-purple-600 mb-6 text-center">
-    Política de Privacidad
-  </h1>
-  <p class="text-center text-sm text-gray-500 mb-10">
-    Fecha de última actualización: 29 de abril de 2025
-  </p>
+{% block content %}
+<div class="max-w-4xl mx-auto px-4 py-12">
+  <div class="bg-white shadow-xl rounded-xl overflow-hidden animate-fadeInUp">
+    <!-- Encabezado con gradiente -->
+    <div class="bg-gradient-to-r from-purple-600 to-indigo-600 py-8 px-6 text-white">
+      <div class="max-w-3xl mx-auto text-center">
+        <h1 class="text-3xl md:text-4xl font-bold mb-4">Política de Privacidad</h1>
+        <p class="text-purple-100">Fecha de última actualización: <span class="font-medium">29 de abril de 2025</span></p>
+      </div>
+    </div>
 
-  <p class="text-gray-700 mb-6">
-    En <span class="font-semibold text-purple-600">CodeMentorEngineering</span>,
-    valoramos tu privacidad y nos comprometemos a proteger tus datos personales.
-    Esta Política de Privacidad explica cómo recopilamos, utilizamos,
-    almacenamos y protegemos tu información. Al utilizar nuestro sitio web,
-    aceptas las prácticas descritas a continuación.
-  </p>
+    <!-- Contenido principal -->
+    <div class="p-6 md:p-10">
+      <div class="max-w-3xl mx-auto prose prose-purple">
+        <p class="lead">
+          En <span class="font-semibold text-purple-600">CodeMentorEngineering</span>,
+          valoramos tu privacidad y nos comprometemos a proteger tus datos personales. 
+          Esta Política de Privacidad explica cómo recopilamos, utilizamos, almacenamos y protegemos tu información. 
+          Al utilizar nuestro sitio web, aceptas las prácticas descritas a continuación.
+        </p>
 
-  <h2 class="text-2xl font-semibold text-purple-600 mt-10 mb-4">
-    1. Información que Recopilamos
-  </h2>
-  <p class="text-gray-700 mb-6">
-    Podemos recopilar la siguiente información personal:
-  </p>
-  <ul class="list-disc list-inside text-gray-700 mb-6">
-    <li>Nombre completo.</li>
-    <li>Correo electrónico.</li>
-    <li>Información académica relevante.</li>
-    <li>Datos de acceso y navegación en la plataforma.</li>
-  </ul>
+        <!-- Sección 1 -->
+        <div class="mt-12">
+          <div class="flex items-start">
+            <span class="flex-shrink-0 bg-purple-100 text-purple-600 rounded-full w-8 h-8 flex items-center justify-center mr-4 mt-1 font-bold">1</span>
+            <div>
+              <h2 class="text-xl md:text-2xl font-bold text-gray-800">Información que Recopilamos</h2>
+              <p class="mt-2 text-gray-600">
+                Podemos recopilar la siguiente información personal:
+              </p>
+              <ul class="mt-3 space-y-2 text-gray-600">
+                <li class="flex items-start">
+                  <span class="flex-shrink-0 h-6 w-6 text-purple-500">•</span>
+                  <span>Nombre completo y datos de contacto</span>
+                </li>
+                <li class="flex items-start">
+                  <span class="flex-shrink-0 h-6 w-6 text-purple-500">•</span>
+                  <span>Información académica relevante</span>
+                </li>
+                <li class="flex items-start">
+                  <span class="flex-shrink-0 h-6 w-6 text-purple-500">•</span>
+                  <span>Datos de acceso y navegación</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
 
-  <h2 class="text-2xl font-semibold text-purple-600 mt-10 mb-4">
-    2. Uso de la Información
-  </h2>
-  <p class="text-gray-700 mb-6">Utilizamos la información recopilada para:</p>
-  <ul class="list-disc list-inside text-gray-700 mb-6">
-    <li>Gestionar tu cuenta y permitir el acceso a cursos.</li>
-    <li>Enviar notificaciones importantes sobre el servicio.</li>
-    <li>Mejorar la calidad de nuestros contenidos y servicios.</li>
-    <li>Responder a consultas o solicitudes de soporte.</li>
-  </ul>
+        <!-- Sección 2 -->
+        <div class="mt-12">
+          <div class="flex items-start">
+            <span class="flex-shrink-0 bg-purple-100 text-purple-600 rounded-full w-8 h-8 flex items-center justify-center mr-4 mt-1 font-bold">2</span>
+            <div>
+              <h2 class="text-xl md:text-2xl font-bold text-gray-800">Uso de la Información</h2>
+              <p class="mt-2 text-gray-600">
+                Utilizamos la información recopilada para:
+              </p>
+              <ul class="mt-3 space-y-2 text-gray-600">
+                <li class="flex items-start">
+                  <span class="flex-shrink-0 h-6 w-6 text-purple-500">•</span>
+                  <span>Gestionar tu cuenta y acceso a cursos</span>
+                </li>
+                <li class="flex items-start">
+                  <span class="flex-shrink-0 h-6 w-6 text-purple-500">•</span>
+                  <span>Mejorar nuestros contenidos y servicios</span>
+                </li>
+                <li class="flex items-start">
+                  <span class="flex-shrink-0 h-6 w-6 text-purple-500">•</span>
+                  <span>Responder a consultas y solicitudes</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
 
-  <h2 class="text-2xl font-semibold text-purple-600 mt-10 mb-4">
-    3. Conservación de los Datos
-  </h2>
-  <p class="text-gray-700 mb-6">
-    Conservaremos tus datos personales durante el tiempo necesario para cumplir
-    con los fines para los cuales se recopilaron, o mientras tu cuenta esté
-    activa. Posteriormente, los datos podrán ser eliminados o anonimizados.
-  </p>
+        <!-- Secciones adicionales (mismo patrón) -->
+        <!-- Sección 3 -->
+        <div class="mt-12">
+          <div class="flex items-start">
+            <span class="flex-shrink-0 bg-purple-100 text-purple-600 rounded-full w-8 h-8 flex items-center justify-center mr-4 mt-1 font-bold">3</span>
+            <div>
+              <h2 class="text-xl md:text-2xl font-bold text-gray-800">Conservación de los Datos</h2>
+              <p class="mt-2 text-gray-600">
+                Conservaremos tus datos personales durante el tiempo necesario para cumplir con los fines para los cuales se recopilaron, 
+                o mientras tu cuenta esté activa. 
+                Posteriormente, los datos podrán ser eliminados o anonimizados.
+              </p>
+            </div>
+          </div>
+        </div>
 
-  <h2 class="text-2xl font-semibold text-purple-600 mt-10 mb-4">
-    4. Compartición de la Información
-  </h2>
-  <p class="text-gray-700 mb-6">
-    No vendemos, alquilamos ni compartimos tu información personal con terceros,
-    salvo en los siguientes casos:
-  </p>
-  <ul class="list-disc list-inside text-gray-700 mb-6">
-    <li>
-      Cuando sea necesario para prestar servicios (por ejemplo, proveedores
-      tecnológicos).
-    </li>
-    <li>Cuando sea requerido por ley o por una autoridad competente.</li>
-    <li>Para proteger nuestros derechos o propiedad.</li>
-  </ul>
+        <!-- Sección 4 -->
+        <div class="mt-12">
+          <div class="flex items-start">
+            <span class="flex-shrink-0 bg-purple-100 text-purple-600 rounded-full w-8 h-8 flex items-center justify-center mr-4 mt-1 font-bold">4</span>
+            <div>
+              <h2 class="text-xl md:text-2xl font-bold text-gray-800">Compartición de la Información</h2>
+              <p class="mt-2 text-gray-600">
+                No vendemos ni compartimos tu información personal, excepto en casos específicos:
+              </p>
+              <ul class="mt-3 space-y-2 text-gray-600">
+                <li class="flex items-start">
+                  <span class="flex-shrink-0 h-6 w-6 text-purple-500">•</span>
+                  <span>Con proveedores tecnológicos necesarios</span>
+                </li>
+                <li class="flex items-start">
+                  <span class="flex-shrink-0 h-6 w-6 text-purple-500">•</span>
+                  <span>Cuando sea requerido por ley</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
 
-  <h2 class="text-2xl font-semibold text-purple-600 mt-10 mb-4">
-    5. Seguridad de la Información
-  </h2>
-  <p class="text-gray-700 mb-6">
-    Implementamos medidas de seguridad físicas, electrónicas y administrativas
-    para proteger tus datos. Sin embargo, ninguna transmisión de datos por
-    Internet es 100% segura, por lo que no podemos garantizar una protección
-    absoluta.
-  </p>
+        <!-- Sección 5 -->
+        <div class="mt-12">
+          <div class="flex items-start">
+            <span class="flex-shrink-0 bg-purple-100 text-purple-600 rounded-full w-8 h-8 flex items-center justify-center mr-4 mt-1 font-bold">5</span>
+            <div>
+              <h2 class="text-xl md:text-2xl font-bold text-gray-800">Seguridad de la Información</h2>
+              <p class="mt-2 text-gray-600">
+                Implementamos medidas de seguridad físicas, electrónicas y administrativas para proteger tus datos. 
+                Sin embargo, ninguna transmisión de datos por Internet es 100% segura, 
+                por lo que no podemos garantizar una protección absoluta.
+              </p>
+            </div>
+          </div>
+        </div>
 
-  <h2 class="text-2xl font-semibold text-purple-600 mt-10 mb-4">
-    6. Tus Derechos
-  </h2>
-  <p class="text-gray-700 mb-6">
-    Tienes derecho a acceder, corregir, actualizar o eliminar tus datos
-    personales. Puedes ejercer estos derechos contactándonos a través de los
-    medios indicados al final de esta política.
-  </p>
+        <!-- Sección 6 -->
+        <div class="mt-12">
+          <div class="flex items-start">
+            <span class="flex-shrink-0 bg-purple-100 text-purple-600 rounded-full w-8 h-8 flex items-center justify-center mr-4 mt-1 font-bold">6</span>
+            <div>
+              <h2 class="text-xl md:text-2xl font-bold text-gray-800">Seguridad de la Información</h2>
+              <p class="mt-2 text-gray-600">
+                Tienes derecho a acceder, corregir, actualizar o eliminar tus datos personales. 
+                Puedes ejercer estos derechos contactándonos a través de los medios indicados al final de esta política.
+              </p>
+            </div>
+          </div>
+        </div>
 
-  <h2 class="text-2xl font-semibold text-purple-600 mt-10 mb-4">
-    7. Cookies y Tecnologías Similares
-  </h2>
-  <p class="text-gray-700 mb-6">
-    Utilizamos cookies para mejorar tu experiencia en nuestro sitio, analizar el
-    tráfico y personalizar el contenido. Puedes gestionar tus preferencias de
-    cookies desde la configuración de tu navegador.
-  </p>
+        <!-- Sección 7 -->
+        <div class="mt-12">
+          <div class="flex items-start">
+            <span class="flex-shrink-0 bg-purple-100 text-purple-600 rounded-full w-8 h-8 flex items-center justify-center mr-4 mt-1 font-bold">7</span>
+            <div>
+              <h2 class="text-xl md:text-2xl font-bold text-gray-800">Cookies y Tecnologías Similares</h2>
+              <p class="mt-2 text-gray-600">
+                Utilizamos cookies para mejorar tu experiencia en nuestro sitio, analizar el tráfico y personalizar el contenido. 
+                Puedes gestionar tus preferencias de cookies desde la configuración de tu navegador.
+              </p>
+            </div>
+          </div>
+        </div>
 
-  <h2 class="text-2xl font-semibold text-purple-600 mt-10 mb-4">
-    8. Modificaciones a la Política
-  </h2>
-  <p class="text-gray-700 mb-6">
-    Nos reservamos el derecho de actualizar esta Política de Privacidad en
-    cualquier momento. Te notificaremos cualquier cambio significativo a través
-    de nuestro sitio o por otros medios de contacto.
-  </p>
+        <!-- Sección 8 -->
+        <div class="mt-12">
+          <div class="flex items-start">
+            <span class="flex-shrink-0 bg-purple-100 text-purple-600 rounded-full w-8 h-8 flex items-center justify-center mr-4 mt-1 font-bold">8</span>
+            <div>
+              <h2 class="text-xl md:text-2xl font-bold text-gray-800">Modificaciones a la Política</h2>
+              <p class="mt-2 text-gray-600">
+                Nos reservamos el derecho de actualizar esta Política de Privacidad en cualquier momento. Te notificaremos 
+                cualquier cambio significativo a través de nuestro sitio o por otros medios de contacto.
+              </p>
+            </div>
+          </div>
+        </div>
 
-  <h2 class="text-2xl font-semibold text-purple-600 mt-10 mb-4">9. Contacto</h2>
-  <p class="text-gray-700 mb-6">
-    Si tienes preguntas sobre esta Política de Privacidad o deseas ejercer tus
-    derechos, puedes comunicarte con nosotros en:
-  </p>
-  <ul class="list-disc list-inside text-gray-700 mb-6">
-    <li>
-      Correo electrónico:
-      <span class="font-semibold text-purple-600">correo@example.com</span>
-    </li>
-    <li>
-      Dirección postal:
-      <span class="font-semibold text-purple-600"
-        >Av. Jose Jesús Macias Delgado 18100, Ciudad Universitaria, 32000,
-        Juárez, Chih.</span
-      >
-    </li>
-  </ul>
+        <!-- Sección de contacto -->
+        <div class="mt-12 bg-purple-50 rounded-lg p-6">
+          <h2 class="text-xl md:text-2xl font-bold text-purple-800 flex items-center">
+            <span class="material-symbols-outlined mr-2">contact_support</span>
+            Contacto
+          </h2>
+          <p class="mt-3 text-gray-700">
+            Si tienes preguntas sobre esta Política de Privacidad o deseas ejercer 
+            tus derechos, puedes comunicarte con nosotros en:
+          </p>
+          <div class="mt-4 space-y-3">
+            <div class="flex items-start">
+              <span class="material-symbols-outlined text-purple-600 mr-2">mail</span>
+              <a href="mailto:correo@example.com" class="text-purple-600 hover:text-purple-800">contacto@codementor.edu</a>
+            </div>
+            <div class="flex items-start">
+              <span class="material-symbols-outlined text-purple-600 mr-2">location_on</span>
+              <span class="text-gray-700">Av. Jose Jesús Macias Delgado 18100, Ciudad Universitaria, 32000, Juárez, Chih.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
 {% endblock %}

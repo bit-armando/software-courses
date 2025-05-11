@@ -49,9 +49,9 @@
   transition: all 0.3s ease;
 }
 
-/* ============= */
+/* =============       */
 /* ELEMENTOS GENERALES */
-/* ============= */
+/* =============       */
 
 /* Logo */  
 .logo-hover-effect {
@@ -65,4 +65,44 @@
 /* Footer */
 footer a {
   transition: color 0.2s ease;
+}
+
+/* ============= */
+/* PRIVACIDAD    */
+/* ============= */
+
+/* Animación de entrada */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fadeInUp {
+  animation: fadeInUp 0.6s ease-out forwards;
+}
+
+/* Estilos para el contenido */
+.prose {
+  line-height: 1.6;
+}
+
+.prose ul {
+  list-style-type: none;
+  padding-left: 0;
+}
+
+.prose .lead {
+  font-size: 1.125rem;
+  color: #4a5568;
+}
+
+/* Efectos hover */
+.hover\:text-purple-800:hover {
+  color: #5b21b6;
 }
