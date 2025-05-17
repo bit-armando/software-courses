@@ -1,87 +1,128 @@
 {% extends "base.html" %}
 
 {% block content %}
-<div class="container mx-auto py-12">
-    <h2 class="text-3xl font-bold mb-6">Lista de Cursos</h2>
+<div class="container">
+  <!-- Encabezado -->
+  <div class="courses-header">
+    <h1 class="courses-title">Lista de Cursos</h1>
+    <p class="courses-subtitle">
+      Descubre las mejores metodologías, herramientas y recursos para impulsar tu aprendizaje
+    </p>
+  </div>
 
-    <!-- Formulario de búsqueda -->
-    <form method="get" class="mb-6">
-        <div class="flex gap-4">
-            <!-- Campo de búsqueda por nombre o descripción -->
-            <input type="text" name="q" placeholder="Buscar por nombre o descripción"
-                   value="" class="border p-2 rounded w-full hover:border-purple-500 focus:outline-none focus:ring-2 focus:ring-purple-500">
+  <!-- Formulario de búsqueda -->
+  <form method="get" class="search-form">
+    <div class="search-row">
+      <div class="search-group">
+        <span class="search-icon material-symbols-outlined">search</span>
+        <input 
+          type="text" 
+          name="q" 
+          placeholder="Buscar por nombre o descripción"
+          value="{{ query }}"
+          class="search-input"
+        >
+      </div>
 
-            <!-- Selector de categorías -->
-            <select name="category" class="border p-2 rounded w-full bg-white hover:border-purple-500 focus:outline-none focus:ring-2 focus:ring-purple-500">
-                <option value="">Todas las categorías</option>
-                {% for cat in categories %}
-                <option value="{{ cat.id }}" {% if category == cat.id|stringformat:"s" %}selected{% endif %}>
-                    {{ cat.name }}
-                </option>
-                {% endfor %}
-            </select>
+      <div class="search-group">
+        <span class="search-icon material-symbols-outlined">category</span>
+        <select name="category" class="category-select">
+          <option value="">Todas las categorías</option>
+          {% for cat in categories %}
+          <option value="{{ cat.id }}" {% if category == cat.id|stringformat:"s" %}selected{% endif %}>
+            {{ cat.name }}
+          </option>
+          {% endfor %}
+        </select>
+      </div>
 
-            <!-- Botón de búsqueda -->
-            <button type="submit" class="bg-purple-600 text-white px-4 py-2 rounded hover:scale-105 transition transform duration-200">Buscar</button>
-        </div>
-    </form>
-
-    <!-- Lista de cursos -->
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {% for course in page_obj %}
-        <div class="bg-white p-6 rounded hover:shadow-lg hover:scale-105 transition transform duration-200 cursor-pointer" onclick="window.location.href='{% url 'courses:course_detail' course.id %}'">
-            <h3 class="text-xl font-semibold mb-2">{{ course.title }}</h3>
-            <p class="text-gray-600 mb-4">{{ course.short_description }}</p>
-            <img src="{{ course.image.url }}" alt="{{ course.title }}" class="w-full h-48 object-cover mb-4 rounded">
-            <div class="flex items-center justify-between mb-4">
-                <p><strong>Categoría:</strong> {{ course.category.name }}</p>
-                {% if course.category.name == "Metodologías" %}
-                <span class="material-symbols-outlined text-3xl text-purple-600">flowchart</span>
-                {% elif course.category.name == "Documentación" %}
-                <span class="material-symbols-outlined text-3xl text-purple-600">edit_note</span>
-                {% elif course.category.name == "Programación" %}
-                <span class="material-symbols-outlined text-3xl text-purple-600">code</span>
-                {% elif course.category.name == "Herramientas" %}
-                <span class="material-symbols-outlined text-3xl text-purple-600">build</span>
-                {% endif %}
-            </div>
-            <a href="{% url 'courses:course_detail' course.id %}" class="text-purple-600 font-semibold hover:underline">
-            Ver detalles →
-            </a>
-        </div>
-        {% empty %}
-        <p>No se encontraron cursos que coincidan con los criterios de búsqueda.</p>
-        {% endfor %}
+      <button type="submit" class="search-btn">
+        <span class="material-symbols-outlined">search</span>
+        Buscar
+      </button>
     </div>
+  </form>
 
-    <!-- Controles de paginación -->
-    <div class="mt-6">
-        <nav class="flex justify-center">
-            <ul class="inline-flex items-center">
-                {% if page_obj.has_previous %}
-                <li>
-                    <a href="?page={{ page_obj.previous_page_number }}&q={{ query }}&category={{ category }}"
-                       class="px-3 py-2 bg-purple-400 text-gray-700 rounded-l hover:bg-purple-500">Anterior</a>
-                </li>
-                {% endif %}
+  <!-- Lista de cursos -->
+  {% if page_obj %}
+  <div class="courses-grid">
+    {% for course in page_obj %}
+    <div class="course-card" onclick="window.location.href='{% url 'courses:course_detail' course.id %}'">
+      <div class="course-image-container">
+        <img src="{{ course.image.url }}" alt="{{ course.title }}" class="course-image">
+        <span class="category-badge">{{ course.category.name }}</span>
+      </div>
+      
+      <div class="course-content">
+        <div class="course-category">
+          {% if course.category.name == "Metodologías" %}
+          <span class="course-icon material-symbols-outlined">flowchart</span>
+          {% elif course.category.name == "Documentación" %}
+          <span class="course-icon material-symbols-outlined">edit_note</span>
+          {% elif course.category.name == "Programación" %}
+          <span class="course-icon material-symbols-outlined">code</span>
+          {% elif course.category.name == "Herramientas" %}
+          <span class="course-icon material-symbols-outlined">build</span>
+          {% endif %}
+          {{ course.category.name }}
+        </div>
+        
+        <h3 class="course-title">{{ course.title }}</h3>
+        <p class="course-description">{{ course.short_description }}</p>
+        
+        <div class="course-meta">
 
-                {% for num in page_obj.paginator.page_range %}
-                <li>
-                    <a href="?page={{ num }}&q={{ query }}&category={{ category }}"
-                       class="px-3 py-2 {% if page_obj.number == num %}bg-purple-600 text-white{% else %}bg-purple-400 text-gray-700{% endif %} hover:bg-purple-500">
-                        {{ num }}
-                    </a>
-                </li>
-                {% endfor %}
-
-                {% if page_obj.has_next %}
-                <li>
-                    <a href="?page={{ page_obj.next_page_number }}&q={{ query }}&category={{ category }}"
-                       class="px-3 py-2 bg-purple-400 text-gray-700 rounded-r hover:bg-purple-500">Siguiente</a>
-                </li>
-                {% endif %}
-            </ul>
-        </nav>
+          <a href="{% url 'courses:course_detail' course.id %}" class="course-link">
+            Ver detalles
+            <span class="course-link-icon material-symbols-outlined">arrow_forward</span>
+          </a>
+        </div>
+      </div>
     </div>
+    {% endfor %}
+  </div>
+  {% else %}
+  <!-- Mensaje cuando no hay resultados -->
+  <div class="no-results">
+    <span class="no-results-icon material-symbols-outlined">search_off</span>
+    <h3 class="no-results-title">No se encontraron cursos</h3>
+    <p class="no-results-text">Intenta con otros términos de búsqueda o categorías</p>
+    <a href="{% url 'courses:list_courses' %}" class="reset-btn">
+      <span class="reset-icon material-symbols-outlined">refresh</span>
+      Ver todos los cursos
+    </a>
+  </div>
+  {% endif %}
+
+  <!-- Paginación -->
+  {% if page_obj.paginator.num_pages > 1 %}
+  <div class="pagination">
+    <ul class="pagination-list">
+      {% if page_obj.has_previous %}
+      <li class="pagination-item">
+        <a href="?page={{ page_obj.previous_page_number }}&q={{ query }}&category={{ category }}" class="pagination-link">
+          <span class="pagination-icon material-symbols-outlined">chevron_left</span>
+        </a>
+      </li>
+      {% endif %}
+
+      {% for num in page_obj.paginator.page_range %}
+      <li class="pagination-item {% if page_obj.number == num %}current-page{% endif %}">
+        <a href="?page={{ num }}&q={{ query }}&category={{ category }}" class="pagination-link">
+          {{ num }}
+        </a>
+      </li>
+      {% endfor %}
+
+      {% if page_obj.has_next %}
+      <li class="pagination-item">
+        <a href="?page={{ page_obj.next_page_number }}&q={{ query }}&category={{ category }}" class="pagination-link">
+          <span class="pagination-icon material-symbols-outlined">chevron_right</span>
+        </a>
+      </li>
+      {% endif %}
+    </ul>
+  </div>
+  {% endif %}
 </div>
 {% endblock %}
