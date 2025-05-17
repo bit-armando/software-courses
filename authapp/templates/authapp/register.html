@@ -1,22 +1,82 @@
 {% extends "base.html" %}
+{% load static %}
+
 {% block content %}
-<div class="container mx-auto py-12 max-w-md">
-    <h2 class="text-3xl font-bold text-purple-600 mb-6">Registro</h2>
-    <form method="post" class="bg-white p-8 rounded-lg shadow-lg space-y-4">
-        {% csrf_token %}
-        {% for field in form %}
-            <div>
-                <label class="block mb-1 text-purple-700 font-semibold">{{ field.label }}</label>
-                {{ field }}
-                {% if field.errors %}
-                    <p class="text-red-500 text-sm">{{ field.errors }}</p>
-                {% endif %}
-            </div>
-        {% endfor %}
-        <button type="submit" class="w-full bg-purple-500 hover:bg-purple-600 text-white font-bold py-2 px-4 rounded-lg">Registrarse</button>
-    </form>
-    <div class="mt-4 text-center">
-        <p class="text-gray-600">¿Ya tienes una cuenta? <a href="{% url 'authapp:login' %}" class="text-purple-500 hover:underline">Inicia Sesión</a></p>
+<div class="register-wrapper">
+  <div class="register-card">
+    <!-- Logo y título -->
+    <div class="register-header">
+      <img src="{% static 'images/logo.png' %}" alt="Logo" class="register-logo">
+      <h1>Crear cuenta</h1>
+      <p>Completa el formulario para registrarte</p>
     </div>
+
+    <!-- Mostrar mensajes de Django -->
+    {% if messages %}
+    <div class="message-container">
+      {% for message in messages %}
+      <div class="message {% if message.tags %}{{ message.tags }}{% endif %}">
+        {{ message }}
+      </div>
+      {% endfor %}
+    </div>
+    {% endif %}
+
+    <!-- Formulario -->
+    <form method="post" class="register-form">
+      {% csrf_token %}
+      
+      <!-- Mostrar errores generales del formulario -->
+      {% if form.non_field_errors %}
+      <div class="error-message general-error">
+        {% for error in form.non_field_errors %}
+        {{ error }}
+        {% endfor %}
+      </div>
+      {% endif %}
+
+      <!-- Campos del formulario -->
+      {% for field in form %}
+      <div class="form-group">
+        <label for="{{ field.id_for_label }}" class="form-label">
+          {% if field.name == 'username' %}
+          <span class="material-symbols-outlined">person</span>
+          {% elif field.name == 'email' %}
+          <span class="material-symbols-outlined">mail</span>
+          {% elif field.name == 'password1' or field.name == 'password2' %}
+          <span class="material-symbols-outlined">lock</span>
+          {% else %}
+          <span class="material-symbols-outlined">edit</span>
+          {% endif %}
+          {{ field.label }}
+        </label>
+        
+        {{ field }}
+        
+        {% if field.errors %}
+        <div class="error-message">
+          {% for error in field.errors %}
+          {{ error }}
+          {% endfor %}
+        </div>
+        {% endif %}
+        
+        {% if field.help_text and not field.errors %}
+        <div class="help-text">
+          {{ field.help_text }}
+        </div>
+        {% endif %}
+      </div>
+      {% endfor %}
+
+      <button type="submit" class="register-button">
+        Registrarse
+      </button>
+    </form>
+
+    <div class="login-link">
+      ¿Ya tienes cuenta? <a href="{% url 'authapp:login' %}">Inicia sesión</a>
+    </div>
+  </div>
 </div>
 {% endblock %}
