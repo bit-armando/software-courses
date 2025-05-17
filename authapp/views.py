@@ -14,7 +14,7 @@ def register_user(request):
             user.save()
             # Crear un perfil para el usuario
             Person.objects.create(user=user)
-            messages.success(request, "User registered successfully. Please log in.")
+            messages.success(request, "Usuario registrado con éxito, por favor inicia sesión.")
             return redirect('authapp:login')
     else:
         form = UserRegistrationForm()
@@ -23,7 +23,7 @@ def register_user(request):
 
 def login_user(request):
     if request.method == 'POST':
-        form = UserLoginForm(data=request.POST)
+        form = UserLoginForm(request.POST)
         if form.is_valid():
             email = form.cleaned_data['email']
             password = form.cleaned_data['password']
@@ -32,18 +32,17 @@ def login_user(request):
                 user = authenticate(request, username=user.username, password=password)
                 if user is not None:
                     login(request, user)
-                    messages.success(request, "Logged in successfully.")
+                    # messages.success(request, "¡Bienvenido! Has iniciado sesión correctamente.")
                     return redirect('courses:list_courses')
                 else:
-                    messages.error(request, "Invalid email or password.")
+                    form.add_error(None, "Correo electrónico o contraseña incorrectos")
             except User.DoesNotExist:
-                messages.error(request, "Invalid email or password.")
+                form.add_error(None, "Correo electrónico o contraseña incorrectos")
     else:
         form = UserLoginForm()
     return render(request, 'authapp/login.html', {'form': form})
 
-
 def logout_user(request):
     logout(request)
-    messages.success(request, "Logged out successfully.")
+    messages.success(request, "Sesión cerrada correctamente!.")
     return redirect('authapp:login')
